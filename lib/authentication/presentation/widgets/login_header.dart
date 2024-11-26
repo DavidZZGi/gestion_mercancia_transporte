@@ -7,16 +7,19 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const SizedBox(
+        SizedBox(
           height: 10,
         ),
-        const Center(
+        Center(
           child: Text(
             'Bienvenido',
-            style: Style.textBodyMedium,
+            style: Style.textBodyLarge,
           ),
+        ),
+        SizedBox(
+          height: 50,
         ),
       ],
     );

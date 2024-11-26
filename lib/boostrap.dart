@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'app/view/app.dart';
+import 'dart:async';
 
-Future<void> bootstrap() async {
+import 'package:flutter/material.dart';
+
+Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // await configureDependencies();
 
-  runApp(
-    const MyApp(),
-  );
+  runApp(await builder());
 }

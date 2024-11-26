@@ -9,7 +9,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [], child: AppView());
+    return
+        // MultiBlocProvider(providers: [], child:
+        AppView();
+    //);
   }
 }
 
@@ -23,6 +26,7 @@ class AppView extends StatelessWidget {
         );
 
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: appRouter.config(),
     );
   }

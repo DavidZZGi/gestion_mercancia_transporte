@@ -21,9 +21,6 @@ class SignInScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const LoginHeader(),
-            const SizedBox(
-              height: 20,
-            ),
             CustomTextfield(
                 label: emailText,
                 textInputType: TextInputType.text,
@@ -38,7 +35,7 @@ class SignInScreen extends StatelessWidget {
                 textController: password,
                 hint: passwordHintText),
             const SizedBox(
-              height: 20,
+              height: 35,
             ),
             ElevatedButton(
                 style: const ButtonStyle(

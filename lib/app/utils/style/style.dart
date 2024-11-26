@@ -16,6 +16,7 @@ class Style {
     fontWeight: FontWeight.w500,
     color: Colors.black,
   );
-  static const textBodyMedium =
-      TextStyle(fontSize: 16, fontFamily: 'Roboto', color: Colors.red);
+  static const textBodyMedium = TextStyle(fontSize: 16, color: Colors.red);
+  static const textBodyLarge =
+      TextStyle(fontSize: 30, color: Colors.red, fontWeight: FontWeight.bold);
 }
