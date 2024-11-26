@@ -2,9 +2,9 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
+  static final DatabaseHelper instance = DatabaseHelper._internal();
 
-  factory DatabaseHelper() => _instance;
+  factory DatabaseHelper() => instance;
 
   static Database? _database;
 
@@ -12,11 +12,11 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDatabase();
+    _database = await initDatabase();
     return _database!;
   }
 
-  Future<Database> _initDatabase() async {
+  Future<Database> initDatabase() async {
     final path = join(await getDatabasesPath(), 'transport_manager.db');
     return await openDatabase(
       path,

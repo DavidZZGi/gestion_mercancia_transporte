@@ -1,5 +1,8 @@
+import '../models/user.dart';
+
 abstract class AuthInterface {
-  Future<void> signIn();
-  Future<void> signUp();
-  Future<void> forgetPassword();
+  Future<User?> signIn({required String email, required String password});
+  Future<void> signUp({required User user});
+  Future<void> changePassword(
+      {required int userId, required String newPassword});
 }
