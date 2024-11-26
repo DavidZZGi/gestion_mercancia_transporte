@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/global/global_text.dart';
+import '../../../app/global/app_texts/global_text.dart';
 import '../../../app/utils/style/style.dart';
 import 'auth_widgets.dart';
 

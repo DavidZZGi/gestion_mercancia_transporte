@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gestion_mercancia_transporte/app/global/global_text.dart';
+import 'package:gestion_mercancia_transporte/app/global/app_texts/global_text.dart';
 
 import '../../../app/utils/style/style.dart';
 import '../widgets/auth_widgets.dart';

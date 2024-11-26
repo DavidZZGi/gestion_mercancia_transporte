@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../routes/guards/auth_guards.dart';
 import '../routes/router/app_router.dart';
