@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gestion_mercancia_transporte/app/global/global_text.dart';
 
 import '../../../app/utils/style/style.dart';
-import '../widgets/aut_widgets.dart';
+import '../widgets/auth_widgets.dart';
 
 @RoutePage()
 class SignInScreen extends StatelessWidget {
@@ -24,18 +25,18 @@ class SignInScreen extends StatelessWidget {
               height: 20,
             ),
             CustomTextfield(
-                label: '',
+                label: emailText,
                 textInputType: TextInputType.text,
                 textController: email,
-                hint: ''),
+                hint: emailHintFormText),
             const SizedBox(
               height: 10,
             ),
             CustomTextfield(
-                label: '',
+                label: passwordText,
                 textInputType: TextInputType.visiblePassword,
                 textController: password,
-                hint: ''),
+                hint: passwordHintText),
             const SizedBox(
               height: 20,
             ),
@@ -46,7 +47,7 @@ class SignInScreen extends StatelessWidget {
                   //     context.router.navigate(const FeedRoute());
                 },
                 child: const Text(
-                  'Sign In',
+                  'Acceder',
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -56,7 +57,7 @@ class SignInScreen extends StatelessWidget {
               height: 10,
             ),
             const Text(
-              'Do not have an account',
+              noaccount,
               style: Style.textTitleMedium,
             ),
             TextButton(
@@ -64,7 +65,7 @@ class SignInScreen extends StatelessWidget {
                   //    context.router.navigate(SignUpRoute());
                 },
                 child: const Text(
-                  'Sign Up',
+                  'Regístarte',
                   style: Style.textBodyMedium,
                 ))
           ],
