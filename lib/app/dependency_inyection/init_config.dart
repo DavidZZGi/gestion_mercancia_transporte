@@ -13,6 +13,13 @@ import 'package:gestion_mercancia_transporte/destinatario/domain/delete_destinat
 import 'package:gestion_mercancia_transporte/destinatario/domain/get_destinatarios_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/update_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
+import 'package:gestion_mercancia_transporte/transport_request/module/create_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/module/delete_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/module/get_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/module/update_request_status_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/state_managament/bloc/transport_request_bloc.dart';
+import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/service/transport_request_service.dart';
+import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/transport_request_repository.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../authentication/domain/sign_up_use_case.dart';
@@ -80,5 +87,34 @@ FutureOr<void> initCore(GetIt sl) async {
           deleteDestinatarioUseCase: sl<DeleteDestinatarioUseCase>(),
           getDestinatariosUseCase: sl<GetDestinatariosUseCase>(),
           updateDestinatarioUseCase: sl<UpdateDestinatarioUseCase>()),
-    );
+    )
+    ..registerLazySingleton<TransportRequestService>(
+      () => TransportRequestService(databaseHelper: sqliteInstance),
+    )
+    ..registerLazySingleton<TransportRequestRepository>(
+      () => TransportRequestRepository(
+          transportRequestService: sl<TransportRequestService>()),
+    )
+    ..registerLazySingleton<CreateTransportRequestUseCase>(
+      () => CreateTransportRequestUseCase(
+          transportRequestRepository: sl<TransportRequestRepository>()),
+    )
+    ..registerLazySingleton<DeleteTransportRequestUseCase>(
+      () => DeleteTransportRequestUseCase(
+          transportRequestRepository: sl<TransportRequestRepository>()),
+    )
+    ..registerLazySingleton<UpdateRequestStatusTransportRequestUseCase>(
+      () => UpdateRequestStatusTransportRequestUseCase(
+          transportRequestRepository: sl<TransportRequestRepository>()),
+    )
+    ..registerLazySingleton<GetTransportRequestUseCase>(
+      () => GetTransportRequestUseCase(
+          transportRequestRepository: sl<TransportRequestRepository>()),
+    )
+    ..registerLazySingleton<TransportRequestBloc>(() => TransportRequestBloc(
+        createTransportRequestUseCase: sl<CreateTransportRequestUseCase>(),
+        deleteTransportRequestUseCase: sl<DeleteTransportRequestUseCase>(),
+        getTransportRequestUseCase: sl<GetTransportRequestUseCase>(),
+        updateRequestStatusTransportRequestUseCase:
+            sl<UpdateRequestStatusTransportRequestUseCase>()));
 }

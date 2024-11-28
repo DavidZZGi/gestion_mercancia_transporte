@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/change_password_bloc/bloc/change_password_bloc.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_in_bloc/bloc/sign_in_bloc.dart';
+import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
+import 'package:gestion_mercancia_transporte/transport_request/state_managament/bloc/transport_request_bloc.dart';
 
 import '../../authentication/state_managament/sign_up_bloc/bloc/sign_up_bloc.dart';
 import '../../boostrap.dart';
@@ -20,7 +22,13 @@ class MyApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) => sl<ChangePasswordBloc>(),
-      )
+      ),
+      BlocProvider(
+        create: (context) => sl<DestinatarioBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => sl<TransportRequestBloc>(),
+      ),
     ], child: const AppView());
   }
 }
