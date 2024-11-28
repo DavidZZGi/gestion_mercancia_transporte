@@ -6,6 +6,13 @@ import 'package:gestion_mercancia_transporte/authentication/domain/change_passwo
 import 'package:gestion_mercancia_transporte/authentication/domain/sign_in_use_case.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/change_password_bloc/bloc/change_password_bloc.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_in_bloc/bloc/sign_in_bloc.dart';
+import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/destinatario_repository.dart';
+import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/service/destinatario_service.dart';
+import 'package:gestion_mercancia_transporte/destinatario/domain/create_destinatario_use_case.dart';
+import 'package:gestion_mercancia_transporte/destinatario/domain/delete_destinatario_use_case.dart';
+import 'package:gestion_mercancia_transporte/destinatario/domain/get_destinatarios_use_case.dart';
+import 'package:gestion_mercancia_transporte/destinatario/domain/update_destinatario_use_case.dart';
+import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../authentication/domain/sign_up_use_case.dart';
@@ -43,5 +50,35 @@ FutureOr<void> initCore(GetIt sl) async {
     ..registerLazySingleton<ChangePasswordBloc>(
       () => ChangePasswordBloc(
           changePasswordUseCase: sl<ChangePasswordUseCase>()),
+    )
+    ..registerLazySingleton<DestinatarioService>(
+      () => DestinatarioService(databaseHelper: sqliteInstance),
+    )
+    ..registerLazySingleton<DestinatarioRepository>(
+      () => DestinatarioRepository(
+          destinatarioService: sl<DestinatarioService>()),
+    )
+    ..registerLazySingleton<CreateDestinatarioUseCase>(
+      () => CreateDestinatarioUseCase(
+          destinatarioRepository: sl<DestinatarioRepository>()),
+    )
+    ..registerLazySingleton<GetDestinatariosUseCase>(
+      () => GetDestinatariosUseCase(
+          destinatarioRepository: sl<DestinatarioRepository>()),
+    )
+    ..registerLazySingleton<UpdateDestinatarioUseCase>(
+      () => UpdateDestinatarioUseCase(
+          destinatarioRepository: sl<DestinatarioRepository>()),
+    )
+    ..registerLazySingleton<DeleteDestinatarioUseCase>(
+      () => DeleteDestinatarioUseCase(
+          destinatarioRepository: sl<DestinatarioRepository>()),
+    )
+    ..registerLazySingleton<DestinatarioBloc>(
+      () => DestinatarioBloc(
+          createDestinatarioUseCase: sl<CreateDestinatarioUseCase>(),
+          deleteDestinatarioUseCase: sl<DeleteDestinatarioUseCase>(),
+          getDestinatariosUseCase: sl<GetDestinatariosUseCase>(),
+          updateDestinatarioUseCase: sl<UpdateDestinatarioUseCase>()),
     );
 }

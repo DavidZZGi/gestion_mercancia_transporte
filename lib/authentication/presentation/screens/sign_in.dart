@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestion_mercancia_transporte/app/global/app_texts/global_text.dart';
+import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_in_bloc/bloc/sign_in_bloc.dart';
 
+import '../../../app/routes/router/app_router.gr.dart';
 import '../../../app/utils/style/style.dart';
 import '../widgets/auth_widgets.dart';
 
@@ -17,55 +20,79 @@ class SignInScreen extends StatelessWidget {
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const LoginHeader(),
-            CustomTextfield(
-                label: emailText,
-                textInputType: TextInputType.text,
-                textController: email,
-                hint: emailHintFormText),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextfield(
-                label: passwordText,
-                textInputType: TextInputType.visiblePassword,
-                textController: password,
-                hint: passwordHintText),
-            const SizedBox(
-              height: 35,
-            ),
-            ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.red)),
-                onPressed: () {
-                  //     context.router.navigate(const FeedRoute());
-                },
-                child: const Text(
-                  'Acceder',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                      fontSize: 16),
-                )),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              noaccount,
-              style: Style.textTitleMedium,
-            ),
-            TextButton(
-                onPressed: () {
-                  //    context.router.navigate(SignUpRoute());
-                },
-                child: const Text(
-                  'Regístarte',
-                  style: Style.textBodyMedium,
-                ))
-          ],
+        child: BlocListener<SignInBloc, SignInState>(
+          listener: (context, state) {
+            state.when(
+              initial: () {},
+              loading: () => const CircularProgressIndicator.adaptive(),
+              success: (user) {
+                print(user);
+                // context
+              },
+              error: (message) => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message)),
+              ),
+            );
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const LoginHeader(),
+              CustomTextfield(
+                  label: emailText,
+                  textInputType: TextInputType.text,
+                  textController: email,
+                  hint: emailHintFormText),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomTextfield(
+                  label: passwordText,
+                  textInputType: TextInputType.visiblePassword,
+                  textController: password,
+                  hint: passwordHintText),
+              const SizedBox(
+                height: 35,
+              ),
+              ElevatedButton(
+                  style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.red)),
+                  onPressed: () {
+                    if (email.text.isNotEmpty && password.text.isNotEmpty) {
+                      context.read<SignInBloc>().add(SignInEvent.signIn(
+                          username: email.text, password: password.text));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content:
+                                Text('Por favor completa todos los campos')),
+                      );
+                    }
+                  },
+                  child: const Text(
+                    'Iniciar Sesión',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        fontSize: 16),
+                  )),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                noaccount,
+                style: Style.textTitleMedium,
+              ),
+              TextButton(
+                  onPressed: () {
+                    context.router.navigate(SignUpRoute());
+                  },
+                  child: const Text(
+                    'Regístarte',
+                    style: Style.textBodyMedium,
+                  ))
+            ],
+          ),
         ),
       ),
     );

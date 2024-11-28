@@ -8,6 +8,8 @@ class LoginHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
           height: 10,
@@ -17,9 +19,6 @@ class LoginHeader extends StatelessWidget {
             'Bienvenido',
             style: Style.textBodyLarge,
           ),
-        ),
-        SizedBox(
-          height: 50,
         ),
       ],
     );

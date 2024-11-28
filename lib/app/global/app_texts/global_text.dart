@@ -7,3 +7,4 @@ const String nameText = 'Nombre';
 const String nameHintText = 'Díganos su nombre';
 const String account = 'Ya tiene una cuenta ?';
 const String noaccount = 'No tiene una cuenta?';
+const String repaetpasswordText = 'Repita su  contraseña';

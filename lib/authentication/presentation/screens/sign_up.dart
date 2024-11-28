@@ -7,16 +7,14 @@ import '../widgets/auth_widgets.dart';
 class SignUpScreen extends StatelessWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
-  final TextEditingController name = TextEditingController();
+  final TextEditingController repeatPassword = TextEditingController();
   SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Column(
-          children: [],
-        )),
-        body: SignUpBody(email: email, password: password, name: name));
+        appBar: AppBar(),
+        body: SignUpBody(
+            email: email, password: password, repeatPassword: repeatPassword));
   }
 }
