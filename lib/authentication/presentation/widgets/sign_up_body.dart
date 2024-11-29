@@ -31,15 +31,12 @@ class SignUpBody extends StatelessWidget {
             loading: () => const CircularProgressIndicator.adaptive(),
             success: (user) {
               print(user);
-              Future.delayed(
-                const Duration(seconds: 1),
-                () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Usuario creado satisfactoriamente')),
-                  );
-                },
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    content: Text('Usuario creado satisfactoriamente')),
               );
+
               context.router.navigate(SignInRoute());
             },
             error: (error) => ScaffoldMessenger.of(context).showSnackBar(
@@ -65,7 +62,7 @@ class SignUpBody extends StatelessWidget {
                   label: 'Username',
                   textInputType: TextInputType.text,
                   textController: username,
-                  hint: emailHintFormText),
+                  hint: userlHintFormText),
               const SizedBox(
                 height: 10,
               ),
@@ -81,13 +78,14 @@ class SignUpBody extends StatelessWidget {
                   label: repaetpasswordText,
                   textInputType: TextInputType.text,
                   textController: repeatPassword,
-                  hint: nameHintText),
+                  hint: repaetpasswordText),
               const SizedBox(
                 height: 15,
               ),
               ElevatedButton(
-                  style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.red)),
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(
+                          Theme.of(context).primaryColor)),
                   onPressed: () {
                     if (repeatPassword.text.isEmpty ||
                         password.text.isEmpty ||
@@ -126,11 +124,10 @@ class SignUpBody extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () {
-                    //    context.router.navigate(SignInRoute());
+                    context.router.replace(SignInRoute());
                   },
                   child: const Text(
                     'Iniciar Sesión',
-                    style: Style.textBodyMedium,
                   ))
             ],
           ),

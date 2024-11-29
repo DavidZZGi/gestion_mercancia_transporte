@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestion_mercancia_transporte/app/routes/router/app_router.gr.dart';
+import 'package:gestion_mercancia_transporte/authentication/state_managament/logout_cubit/cubit/logout_cubit.dart';
+
+import '../global/components/custom_dialos.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -8,48 +12,59 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Gestión de Transporte de Mercancías',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Agregar funcionalidad de logout aquí
+    return BlocListener<LogoutCubit, LogoutState>(
+      listener: (context, state) {
+        state.when(
+            initial: () {},
+            success: () => context.router.replace(SignInRoute()),
+            error: (e) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Sesión cerrada')),
+                SnackBar(content: Text(e)),
               );
-            },
-            icon: const Icon(Icons.logout),
+            });
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text(
+            'Gestión de Transporte de Mercancías',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              'Seleccione una opción:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            _NavigationCard(
-              title: 'Gestión de Destinatarios',
-              description: 'Administra los destinatarios registrados.',
-              icon: Icons.people,
-              onTap: () => context.router.push(const DestinatariosRoute()),
-            ),
-            const SizedBox(height: 16),
-            _NavigationCard(
-              title: 'Gestión de Solicitudes de Transporte',
-              description: 'Administra las solicitudes de transporte.',
-              icon: Icons.local_shipping,
-              onTap: () => context.router.push(const TransportRequestRoute()),
+          actions: [
+            IconButton(
+              onPressed: () {
+                showLogoutDialog(
+                    context, () => context.read<LogoutCubit>().logOut());
+              },
+              icon: const Icon(Icons.logout),
             ),
           ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Seleccione una opción:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+              _NavigationCard(
+                title: 'Gestión de Destinatarios',
+                description: 'Administra los destinatarios registrados.',
+                icon: Icons.people,
+                onTap: () => context.router.push(const DestinatariosRoute()),
+              ),
+              const SizedBox(height: 16),
+              _NavigationCard(
+                title: 'Gestión de Solicitudes de Transporte',
+                description: 'Administra las solicitudes de transporte.',
+                icon: Icons.local_shipping,
+                onTap: () => context.router.push(const TransportRequestRoute()),
+              ),
+            ],
+          ),
         ),
       ),
     );

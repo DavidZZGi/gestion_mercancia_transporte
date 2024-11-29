@@ -5,12 +5,12 @@ part 'transport_request.g.dart';
 
 /// Define los estados de una solicitud de transporte.
 enum RequestStatus {
-  @JsonValue('preparing')
-  preparing,
-  @JsonValue('inTransit')
-  inTransit,
-  @JsonValue('delivered')
-  delivered
+  @JsonValue('Preparando')
+  preparando,
+  @JsonValue('Trasladándose')
+  trasladandose,
+  @JsonValue('Entregada')
+  entregada
 }
 
 @Freezed()
@@ -20,8 +20,9 @@ class TransportRequest with _$TransportRequest {
     int? id,
     required int userId,
     required int recipientId,
-    required String destinationName,
     required RequestStatus status,
+    required DateTime createdAt, // Fecha de creación para tracking
+    String? notes,
   }) = _TransportRequest;
 
   /// Genera un modelo desde un JSON.

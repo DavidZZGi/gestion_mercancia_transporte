@@ -1,61 +1,55 @@
 import 'package:gestion_mercancia_transporte/app/data/database_helper.dart';
-import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/interface/transport_request_interface.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/models/transport_request.dart';
+import 'package:sqflite/sqflite.dart';
 
 class TransportRequestService implements TransportRequestInterface {
   final DatabaseHelper databaseHelper;
-  final String tableNmae = 'transport_requests';
-  final _prefs = AppPreferences();
+  final String tableName = 'transport_requests';
+
   TransportRequestService({required this.databaseHelper});
+
   @override
   Future<void> createTransportRequest(TransportRequest request) async {
     final db = await databaseHelper.database;
 
-    await db.insert(tableNmae, {
-      'id': request.id,
-      'destinationName': request.destinationName,
-      'status': request.status.name,
-    });
+    await db.insert(
+      tableName,
+      request.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   @override
   Future<void> deleteTransportRequest(int id) async {
     final db = await databaseHelper.database;
     await db.delete(
-      tableNmae,
+      tableName,
       where: 'id = ?',
       whereArgs: [id],
     );
   }
 
   @override
-  Future<List<TransportRequest>> getTransportRequests() async {
+  Future<List<TransportRequest>> getTransportRequests(int userId) async {
     final db = await databaseHelper.database;
-
-    final results = await db.query(tableNmae);
-
-    return results
-        .map((e) => TransportRequest(
-              userId: _prefs.getUserId()!,
-              //TODO ver la relacion con recipent
-              recipientId: 0,
-              id: e['id'] as int,
-              destinationName: e['destinationName'] as String,
-              status: RequestStatus.values.byName(e['status'] as String),
-            ))
-        .toList();
+    final List<Map<String, dynamic>> maps = await db.query(
+      tableName,
+      where: 'userId = ?',
+      whereArgs: [userId],
+    );
+    return maps.map((map) => TransportRequest.fromJson(map)).toList();
   }
 
   @override
-  Future<void> updateRequestStatus(int id, RequestStatus status) async {
+  Future<void> updateRequestStatus(TransportRequest transportRequest) async {
     final db = await databaseHelper.database;
 
     await db.update(
-      tableNmae,
-      {'status': status.name},
+      tableName,
+      transportRequest.toJson(),
       where: 'id = ?',
-      whereArgs: [id],
+      whereArgs: [transportRequest.id],
     );
   }
 }

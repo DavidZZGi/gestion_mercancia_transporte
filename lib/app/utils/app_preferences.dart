@@ -13,6 +13,7 @@ class AppPreferences {
 
   int? getUserId() {
     final userId = _preferences.getInt(_userIdKey);
+    print(userId);
     return userId;
   }
 

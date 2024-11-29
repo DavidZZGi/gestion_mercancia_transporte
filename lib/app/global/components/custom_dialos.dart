@@ -69,7 +69,7 @@ class ConfirmationDialog extends StatelessWidget {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -94,16 +94,15 @@ class ConfirmationDialog extends StatelessWidget {
 }
 
 // Mostrar diálogos de confirmación
-showCreateDialog(
-    BuildContext context, String entityName, VoidCallback onConfirm) {
+showLogoutDialog(BuildContext context, VoidCallback onConfirm) {
   showDialog(
     context: context,
     builder: (BuildContext dialogContext) {
       return ConfirmationDialog(
-        title: 'Crear $entityName',
-        content: 'Estás seguro que quieres crear esta $entityName?',
-        confirmButtonText: 'Create',
-        icon: Icons.add_circle_outline,
+        title: 'Cerrar Sesión',
+        content: 'Estás seguro que quieres cerrar sesióņ?',
+        confirmButtonText: 'Ok',
+        icon: Icons.logout,
         onConfirm: onConfirm,
         onCancel: () =>
             Navigator.maybePop(dialogContext), // Intentar cerrar el diálogo

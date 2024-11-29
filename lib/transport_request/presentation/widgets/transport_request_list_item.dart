@@ -19,7 +19,7 @@ class TransportRequestListItem extends StatelessWidget {
           _getIconForStatus(request.status.name),
           color: _getColorForStatus(request.status.name),
         ),
-        title: Text(request.destinationName),
+        title: Text(request.notes ?? 'No hay nota en esta solicitud'),
         subtitle: Text('Estado: ${request.status.name}'),
         trailing: PopupMenuButton<String>(
           onSelected: (value) {

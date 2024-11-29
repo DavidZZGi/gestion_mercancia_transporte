@@ -23,8 +23,10 @@ mixin _$TransportRequest {
   int? get id => throw _privateConstructorUsedError;
   int get userId => throw _privateConstructorUsedError;
   int get recipientId => throw _privateConstructorUsedError;
-  String get destinationName => throw _privateConstructorUsedError;
   RequestStatus get status => throw _privateConstructorUsedError;
+  DateTime get createdAt =>
+      throw _privateConstructorUsedError; // Fecha de creación para tracking
+  String? get notes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,8 +44,9 @@ abstract class $TransportRequestCopyWith<$Res> {
       {int? id,
       int userId,
       int recipientId,
-      String destinationName,
-      RequestStatus status});
+      RequestStatus status,
+      DateTime createdAt,
+      String? notes});
 }
 
 /// @nodoc
@@ -62,8 +65,9 @@ class _$TransportRequestCopyWithImpl<$Res, $Val extends TransportRequest>
     Object? id = freezed,
     Object? userId = null,
     Object? recipientId = null,
-    Object? destinationName = null,
     Object? status = null,
+    Object? createdAt = null,
+    Object? notes = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -78,14 +82,18 @@ class _$TransportRequestCopyWithImpl<$Res, $Val extends TransportRequest>
           ? _value.recipientId
           : recipientId // ignore: cast_nullable_to_non_nullable
               as int,
-      destinationName: null == destinationName
-          ? _value.destinationName
-          : destinationName // ignore: cast_nullable_to_non_nullable
-              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -102,8 +110,9 @@ abstract class _$$TransportRequestImplCopyWith<$Res>
       {int? id,
       int userId,
       int recipientId,
-      String destinationName,
-      RequestStatus status});
+      RequestStatus status,
+      DateTime createdAt,
+      String? notes});
 }
 
 /// @nodoc
@@ -120,8 +129,9 @@ class __$$TransportRequestImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? userId = null,
     Object? recipientId = null,
-    Object? destinationName = null,
     Object? status = null,
+    Object? createdAt = null,
+    Object? notes = freezed,
   }) {
     return _then(_$TransportRequestImpl(
       id: freezed == id
@@ -136,14 +146,18 @@ class __$$TransportRequestImplCopyWithImpl<$Res>
           ? _value.recipientId
           : recipientId // ignore: cast_nullable_to_non_nullable
               as int,
-      destinationName: null == destinationName
-          ? _value.destinationName
-          : destinationName // ignore: cast_nullable_to_non_nullable
-              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RequestStatus,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -155,8 +169,9 @@ class _$TransportRequestImpl implements _TransportRequest {
       {this.id,
       required this.userId,
       required this.recipientId,
-      required this.destinationName,
-      required this.status});
+      required this.status,
+      required this.createdAt,
+      this.notes});
 
   factory _$TransportRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransportRequestImplFromJson(json);
@@ -168,13 +183,16 @@ class _$TransportRequestImpl implements _TransportRequest {
   @override
   final int recipientId;
   @override
-  final String destinationName;
-  @override
   final RequestStatus status;
+  @override
+  final DateTime createdAt;
+// Fecha de creación para tracking
+  @override
+  final String? notes;
 
   @override
   String toString() {
-    return 'TransportRequest(id: $id, userId: $userId, recipientId: $recipientId, destinationName: $destinationName, status: $status)';
+    return 'TransportRequest(id: $id, userId: $userId, recipientId: $recipientId, status: $status, createdAt: $createdAt, notes: $notes)';
   }
 
   @override
@@ -186,15 +204,16 @@ class _$TransportRequestImpl implements _TransportRequest {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.recipientId, recipientId) ||
                 other.recipientId == recipientId) &&
-            (identical(other.destinationName, destinationName) ||
-                other.destinationName == destinationName) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, userId, recipientId, destinationName, status);
+      runtimeType, id, userId, recipientId, status, createdAt, notes);
 
   @JsonKey(ignore: true)
   @override
@@ -216,8 +235,9 @@ abstract class _TransportRequest implements TransportRequest {
       {final int? id,
       required final int userId,
       required final int recipientId,
-      required final String destinationName,
-      required final RequestStatus status}) = _$TransportRequestImpl;
+      required final RequestStatus status,
+      required final DateTime createdAt,
+      final String? notes}) = _$TransportRequestImpl;
 
   factory _TransportRequest.fromJson(Map<String, dynamic> json) =
       _$TransportRequestImpl.fromJson;
@@ -229,9 +249,11 @@ abstract class _TransportRequest implements TransportRequest {
   @override
   int get recipientId;
   @override
-  String get destinationName;
-  @override
   RequestStatus get status;
+  @override
+  DateTime get createdAt;
+  @override // Fecha de creación para tracking
+  String? get notes;
   @override
   @JsonKey(ignore: true)
   _$$TransportRequestImplCopyWith<_$TransportRequestImpl> get copyWith =>

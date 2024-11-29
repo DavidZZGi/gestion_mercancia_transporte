@@ -27,7 +27,7 @@ class SignInScreen extends StatelessWidget {
               loading: () => const CircularProgressIndicator.adaptive(),
               success: (user) {
                 print(user);
-                // context.router.navigate(const HomeRoute());
+                context.router.navigate(const HomeRoute());
               },
               error: (message) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(message)),
@@ -55,8 +55,9 @@ class SignInScreen extends StatelessWidget {
                 height: 35,
               ),
               ElevatedButton(
-                  style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(Colors.red)),
+                  style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(
+                          Theme.of(context).primaryColor)),
                   onPressed: () {
                     if (email.text.isNotEmpty && password.text.isNotEmpty) {
                       context.read<SignInBloc>().add(SignInEvent.signIn(
@@ -89,7 +90,6 @@ class SignInScreen extends StatelessWidget {
                   },
                   child: const Text(
                     'Regístarte',
-                    style: Style.textBodyMedium,
                   ))
             ],
           ),

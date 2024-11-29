@@ -6,11 +6,11 @@ class TransportRequestRepository {
   final TransportRequestService transportRequestService;
   TransportRequestRepository({required this.transportRequestService});
   Future<void> deleteTransportRequest(int id) async =>
-      transportRequestService.deleteTransportRequest(id);
-  Future<void> updateRequestStatus(int id, RequestStatus status) async =>
-      transportRequestService.updateRequestStatus(id, status);
-  Future<List<TransportRequest>> getTransportRequests() async =>
-      transportRequestService.getTransportRequests();
+      await transportRequestService.deleteTransportRequest(id);
+  Future<void> updateRequestStatus(TransportRequest transportRequest) async =>
+      await transportRequestService.updateRequestStatus(transportRequest);
+  Future<List<TransportRequest>> getTransportRequests(int userId) async =>
+      await transportRequestService.getTransportRequests(userId);
   Future<void> createTransportRequest(TransportRequest request) async =>
-      transportRequestService.createTransportRequest(request);
+      await transportRequestService.createTransportRequest(request);
 }

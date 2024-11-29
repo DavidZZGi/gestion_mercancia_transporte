@@ -34,6 +34,7 @@ class DatabaseHelper {
         await db.execute('''
           CREATE TABLE recipients (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            userId INTEGER NOT NULL,
             name TEXT NOT NULL,
             address TEXT NOT NULL,
             phone TEXT NOT NULL,
@@ -44,8 +45,10 @@ class DatabaseHelper {
           CREATE TABLE transport_requests (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             recipientId INTEGER NOT NULL,
+            userId INTEGER NOT NULL,
             status INTEGER NOT NULL,
             createdAt TEXT NOT NULL,
+            notes TEXT,
             FOREIGN KEY(recipientId) REFERENCES recipients(id),
             FOREIGN KEY(userId) REFERENCES users(id)
           );

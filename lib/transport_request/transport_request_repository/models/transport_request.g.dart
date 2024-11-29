@@ -11,14 +11,15 @@ Map<String, dynamic> _$TransportRequestToJson(TransportRequest instance) =>
       'id': instance.id,
       'userId': instance.userId,
       'recipientId': instance.recipientId,
-      'destinationName': instance.destinationName,
       'status': _$RequestStatusEnumMap[instance.status]!,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'notes': instance.notes,
     };
 
 const _$RequestStatusEnumMap = {
-  RequestStatus.preparing: 'preparing',
-  RequestStatus.inTransit: 'inTransit',
-  RequestStatus.delivered: 'delivered',
+  RequestStatus.preparando: 'Preparando',
+  RequestStatus.trasladandose: 'Trasladándose',
+  RequestStatus.entregada: 'Entregada',
 };
 
 _$TransportRequestImpl _$$TransportRequestImplFromJson(
@@ -27,8 +28,9 @@ _$TransportRequestImpl _$$TransportRequestImplFromJson(
       id: (json['id'] as num?)?.toInt(),
       userId: (json['userId'] as num).toInt(),
       recipientId: (json['recipientId'] as num).toInt(),
-      destinationName: json['destinationName'] as String,
       status: $enumDecode(_$RequestStatusEnumMap, json['status']),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      notes: json['notes'] as String?,
     );
 
 Map<String, dynamic> _$$TransportRequestImplToJson(
@@ -37,6 +39,7 @@ Map<String, dynamic> _$$TransportRequestImplToJson(
       'id': instance.id,
       'userId': instance.userId,
       'recipientId': instance.recipientId,
-      'destinationName': instance.destinationName,
       'status': _$RequestStatusEnumMap[instance.status]!,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'notes': instance.notes,
     };

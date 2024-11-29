@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/utils/style/style.dart';
-
 class LoginHeader extends StatelessWidget {
   const LoginHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Center(
           child: Text(
             'Bienvenido',
-            style: Style.textBodyLarge,
+            style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 30,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ],

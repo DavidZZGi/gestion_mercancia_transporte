@@ -1,6 +1,7 @@
 const String loginHeaderText = 'Bienvenido a nuestra App';
 const String emailText = 'Email';
 const String emailHintFormText = 'Por favor escriba su email';
+const String userlHintFormText = 'Por favor escriba su nombre de usuario';
 const String passwordText = 'Contraseña';
 const String passwordHintText = 'Por favor introduzca una contraseña segura';
 const String nameText = 'Nombre';

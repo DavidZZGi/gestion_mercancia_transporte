@@ -2,11 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gestion_mercancia_transporte/app/core/no_params.dart';
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/create_transport_request_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/delete_transport_request_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/get_transport_request_use_case.dart';
-import 'package:gestion_mercancia_transporte/transport_request/domain/param_models/update_request_status_params.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/update_request_status_use_case.dart';
 
 import '../../transport_request_repository/models/transport_request.dart';
@@ -21,6 +20,7 @@ class TransportRequestBloc
   final DeleteTransportRequestUseCase deleteTransportRequestUseCase;
   final UpdateRequestStatusTransportRequestUseCase
       updateRequestStatusTransportRequestUseCase;
+  final _prefs = AppPreferences();
   final GetTransportRequestUseCase getTransportRequestUseCase;
   TransportRequestBloc(
       {required this.createTransportRequestUseCase,
@@ -48,7 +48,8 @@ class TransportRequestBloc
       Emitter<TransportRequestState> emit) async {
     emit(const TransportRequestState.loading());
     try {
-      final requests = await getTransportRequestUseCase.call(NoParams());
+      final requests =
+          await getTransportRequestUseCase.call(_prefs.getUserId()!);
       emit(TransportRequestState.loaded(requests));
     } catch (e) {
       emit(TransportRequestState.error(e.toString()));
@@ -58,9 +59,7 @@ class TransportRequestBloc
   FutureOr<void> _onUpdateTransporRequest(_UpdateTransportRequest event,
       Emitter<TransportRequestState> emit) async {
     try {
-      await updateRequestStatusTransportRequestUseCase.call(
-          UpdateRequestStatusParams(
-              id: event.request.id!, status: event.request.status));
+      await updateRequestStatusTransportRequestUseCase.call(event.request);
       add(const TransportRequestEvent.getAll());
     } catch (e) {
       emit(TransportRequestState.error(e.toString()));

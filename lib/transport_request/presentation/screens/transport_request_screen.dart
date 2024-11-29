@@ -27,7 +27,9 @@ class TransportRequestPage extends StatelessWidget {
           return state.when(
             initial: () => const Center(child: Text('Cargando solicitudes...')),
             loading: () => const Center(child: CircularProgressIndicator()),
-            loaded: (requests) => TransportRequestList(requests: requests),
+            loaded: (requests) => TransportRequestList(
+              requests: requests,
+            ),
             error: (message) => Center(child: Text('Error: $message')),
           );
         },
