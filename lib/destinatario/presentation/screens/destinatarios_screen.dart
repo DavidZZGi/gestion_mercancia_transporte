@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestion_mercancia_transporte/destinatario/presentation/widgets/destinatario_form.dart';
@@ -5,6 +6,7 @@ import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/
 
 import '../widgets/destinatario_list.dart';
 
+@RoutePage()
 class DestinatariosScreen extends StatelessWidget {
   const DestinatariosScreen({super.key});
 

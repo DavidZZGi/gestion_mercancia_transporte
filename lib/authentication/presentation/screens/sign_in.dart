@@ -27,7 +27,7 @@ class SignInScreen extends StatelessWidget {
               loading: () => const CircularProgressIndicator.adaptive(),
               success: (user) {
                 print(user);
-                // context
+                context.router.push(const HomeRoute());
               },
               error: (message) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(message)),
