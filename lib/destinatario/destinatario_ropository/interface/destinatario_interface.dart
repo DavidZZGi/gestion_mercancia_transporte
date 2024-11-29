@@ -5,4 +5,5 @@ abstract class DestinatarioInterface {
   Future<List<Destinatario>> getAllDestinatarios();
   Future<void> createDestinatario(Destinatario destinatario);
   Future<void> deleteDestinatario(int destinatarioId);
+  Future<void> createDestinatarioFromQr(String qrContent);
 }

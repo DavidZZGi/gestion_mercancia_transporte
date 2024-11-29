@@ -23,6 +23,7 @@ mixin _$DestinatarioEvent {
     required TResult Function(Destinatario destinatario) add,
     required TResult Function(Destinatario destinatario) update,
     required TResult Function(int id) delete,
+    required TResult Function(String qrContent) scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$DestinatarioEvent {
     TResult? Function(Destinatario destinatario)? add,
     TResult? Function(Destinatario destinatario)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String qrContent)? scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$DestinatarioEvent {
     TResult Function(Destinatario destinatario)? add,
     TResult Function(Destinatario destinatario)? update,
     TResult Function(int id)? delete,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$DestinatarioEvent {
     required TResult Function(_AddDestinatario value) add,
     required TResult Function(_UpdateDestinatario value) update,
     required TResult Function(_DeleteDestinatario value) delete,
+    required TResult Function(_ScanQr value) scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$DestinatarioEvent {
     TResult? Function(_AddDestinatario value)? add,
     TResult? Function(_UpdateDestinatario value)? update,
     TResult? Function(_DeleteDestinatario value)? delete,
+    TResult? Function(_ScanQr value)? scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$DestinatarioEvent {
     TResult Function(_AddDestinatario value)? add,
     TResult Function(_UpdateDestinatario value)? update,
     TResult Function(_DeleteDestinatario value)? delete,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,6 +141,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(Destinatario destinatario) add,
     required TResult Function(Destinatario destinatario) update,
     required TResult Function(int id) delete,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return started();
   }
@@ -147,6 +154,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(Destinatario destinatario)? add,
     TResult? Function(Destinatario destinatario)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return started?.call();
   }
@@ -159,6 +167,7 @@ class _$StartedImpl implements _Started {
     TResult Function(Destinatario destinatario)? add,
     TResult Function(Destinatario destinatario)? update,
     TResult Function(int id)? delete,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -175,6 +184,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_AddDestinatario value) add,
     required TResult Function(_UpdateDestinatario value) update,
     required TResult Function(_DeleteDestinatario value) delete,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return started(this);
   }
@@ -187,6 +197,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_AddDestinatario value)? add,
     TResult? Function(_UpdateDestinatario value)? update,
     TResult? Function(_DeleteDestinatario value)? delete,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return started?.call(this);
   }
@@ -199,6 +210,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_AddDestinatario value)? add,
     TResult Function(_UpdateDestinatario value)? update,
     TResult Function(_DeleteDestinatario value)? delete,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -255,6 +267,7 @@ class _$GetAllDestinatarioImpl implements _GetAllDestinatario {
     required TResult Function(Destinatario destinatario) add,
     required TResult Function(Destinatario destinatario) update,
     required TResult Function(int id) delete,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return getAll();
   }
@@ -267,6 +280,7 @@ class _$GetAllDestinatarioImpl implements _GetAllDestinatario {
     TResult? Function(Destinatario destinatario)? add,
     TResult? Function(Destinatario destinatario)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return getAll?.call();
   }
@@ -279,6 +293,7 @@ class _$GetAllDestinatarioImpl implements _GetAllDestinatario {
     TResult Function(Destinatario destinatario)? add,
     TResult Function(Destinatario destinatario)? update,
     TResult Function(int id)? delete,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (getAll != null) {
@@ -295,6 +310,7 @@ class _$GetAllDestinatarioImpl implements _GetAllDestinatario {
     required TResult Function(_AddDestinatario value) add,
     required TResult Function(_UpdateDestinatario value) update,
     required TResult Function(_DeleteDestinatario value) delete,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return getAll(this);
   }
@@ -307,6 +323,7 @@ class _$GetAllDestinatarioImpl implements _GetAllDestinatario {
     TResult? Function(_AddDestinatario value)? add,
     TResult? Function(_UpdateDestinatario value)? update,
     TResult? Function(_DeleteDestinatario value)? delete,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return getAll?.call(this);
   }
@@ -319,6 +336,7 @@ class _$GetAllDestinatarioImpl implements _GetAllDestinatario {
     TResult Function(_AddDestinatario value)? add,
     TResult Function(_UpdateDestinatario value)? update,
     TResult Function(_DeleteDestinatario value)? delete,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (getAll != null) {
@@ -413,6 +431,7 @@ class _$AddDestinatarioImpl implements _AddDestinatario {
     required TResult Function(Destinatario destinatario) add,
     required TResult Function(Destinatario destinatario) update,
     required TResult Function(int id) delete,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return add(destinatario);
   }
@@ -425,6 +444,7 @@ class _$AddDestinatarioImpl implements _AddDestinatario {
     TResult? Function(Destinatario destinatario)? add,
     TResult? Function(Destinatario destinatario)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return add?.call(destinatario);
   }
@@ -437,6 +457,7 @@ class _$AddDestinatarioImpl implements _AddDestinatario {
     TResult Function(Destinatario destinatario)? add,
     TResult Function(Destinatario destinatario)? update,
     TResult Function(int id)? delete,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -453,6 +474,7 @@ class _$AddDestinatarioImpl implements _AddDestinatario {
     required TResult Function(_AddDestinatario value) add,
     required TResult Function(_UpdateDestinatario value) update,
     required TResult Function(_DeleteDestinatario value) delete,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return add(this);
   }
@@ -465,6 +487,7 @@ class _$AddDestinatarioImpl implements _AddDestinatario {
     TResult? Function(_AddDestinatario value)? add,
     TResult? Function(_UpdateDestinatario value)? update,
     TResult? Function(_DeleteDestinatario value)? delete,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return add?.call(this);
   }
@@ -477,6 +500,7 @@ class _$AddDestinatarioImpl implements _AddDestinatario {
     TResult Function(_AddDestinatario value)? add,
     TResult Function(_UpdateDestinatario value)? update,
     TResult Function(_DeleteDestinatario value)? delete,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -577,6 +601,7 @@ class _$UpdateDestinatarioImpl implements _UpdateDestinatario {
     required TResult Function(Destinatario destinatario) add,
     required TResult Function(Destinatario destinatario) update,
     required TResult Function(int id) delete,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return update(destinatario);
   }
@@ -589,6 +614,7 @@ class _$UpdateDestinatarioImpl implements _UpdateDestinatario {
     TResult? Function(Destinatario destinatario)? add,
     TResult? Function(Destinatario destinatario)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return update?.call(destinatario);
   }
@@ -601,6 +627,7 @@ class _$UpdateDestinatarioImpl implements _UpdateDestinatario {
     TResult Function(Destinatario destinatario)? add,
     TResult Function(Destinatario destinatario)? update,
     TResult Function(int id)? delete,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -617,6 +644,7 @@ class _$UpdateDestinatarioImpl implements _UpdateDestinatario {
     required TResult Function(_AddDestinatario value) add,
     required TResult Function(_UpdateDestinatario value) update,
     required TResult Function(_DeleteDestinatario value) delete,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return update(this);
   }
@@ -629,6 +657,7 @@ class _$UpdateDestinatarioImpl implements _UpdateDestinatario {
     TResult? Function(_AddDestinatario value)? add,
     TResult? Function(_UpdateDestinatario value)? update,
     TResult? Function(_DeleteDestinatario value)? delete,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return update?.call(this);
   }
@@ -641,6 +670,7 @@ class _$UpdateDestinatarioImpl implements _UpdateDestinatario {
     TResult Function(_AddDestinatario value)? add,
     TResult Function(_UpdateDestinatario value)? update,
     TResult Function(_DeleteDestinatario value)? delete,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -730,6 +760,7 @@ class _$DeleteDestinatarioImpl implements _DeleteDestinatario {
     required TResult Function(Destinatario destinatario) add,
     required TResult Function(Destinatario destinatario) update,
     required TResult Function(int id) delete,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return delete(id);
   }
@@ -742,6 +773,7 @@ class _$DeleteDestinatarioImpl implements _DeleteDestinatario {
     TResult? Function(Destinatario destinatario)? add,
     TResult? Function(Destinatario destinatario)? update,
     TResult? Function(int id)? delete,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return delete?.call(id);
   }
@@ -754,6 +786,7 @@ class _$DeleteDestinatarioImpl implements _DeleteDestinatario {
     TResult Function(Destinatario destinatario)? add,
     TResult Function(Destinatario destinatario)? update,
     TResult Function(int id)? delete,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -770,6 +803,7 @@ class _$DeleteDestinatarioImpl implements _DeleteDestinatario {
     required TResult Function(_AddDestinatario value) add,
     required TResult Function(_UpdateDestinatario value) update,
     required TResult Function(_DeleteDestinatario value) delete,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return delete(this);
   }
@@ -782,6 +816,7 @@ class _$DeleteDestinatarioImpl implements _DeleteDestinatario {
     TResult? Function(_AddDestinatario value)? add,
     TResult? Function(_UpdateDestinatario value)? update,
     TResult? Function(_DeleteDestinatario value)? delete,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return delete?.call(this);
   }
@@ -794,6 +829,7 @@ class _$DeleteDestinatarioImpl implements _DeleteDestinatario {
     TResult Function(_AddDestinatario value)? add,
     TResult Function(_UpdateDestinatario value)? update,
     TResult Function(_DeleteDestinatario value)? delete,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -810,6 +846,164 @@ abstract class _DeleteDestinatario implements DestinatarioEvent {
   int get id;
   @JsonKey(ignore: true)
   _$$DeleteDestinatarioImplCopyWith<_$DeleteDestinatarioImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ScanQrImplCopyWith<$Res> {
+  factory _$$ScanQrImplCopyWith(
+          _$ScanQrImpl value, $Res Function(_$ScanQrImpl) then) =
+      __$$ScanQrImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String qrContent});
+}
+
+/// @nodoc
+class __$$ScanQrImplCopyWithImpl<$Res>
+    extends _$DestinatarioEventCopyWithImpl<$Res, _$ScanQrImpl>
+    implements _$$ScanQrImplCopyWith<$Res> {
+  __$$ScanQrImplCopyWithImpl(
+      _$ScanQrImpl _value, $Res Function(_$ScanQrImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? qrContent = null,
+  }) {
+    return _then(_$ScanQrImpl(
+      null == qrContent
+          ? _value.qrContent
+          : qrContent // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ScanQrImpl implements _ScanQr {
+  const _$ScanQrImpl(this.qrContent);
+
+  @override
+  final String qrContent;
+
+  @override
+  String toString() {
+    return 'DestinatarioEvent.scanQr(qrContent: $qrContent)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScanQrImpl &&
+            (identical(other.qrContent, qrContent) ||
+                other.qrContent == qrContent));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, qrContent);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScanQrImplCopyWith<_$ScanQrImpl> get copyWith =>
+      __$$ScanQrImplCopyWithImpl<_$ScanQrImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getAll,
+    required TResult Function(Destinatario destinatario) add,
+    required TResult Function(Destinatario destinatario) update,
+    required TResult Function(int id) delete,
+    required TResult Function(String qrContent) scanQr,
+  }) {
+    return scanQr(qrContent);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getAll,
+    TResult? Function(Destinatario destinatario)? add,
+    TResult? Function(Destinatario destinatario)? update,
+    TResult? Function(int id)? delete,
+    TResult? Function(String qrContent)? scanQr,
+  }) {
+    return scanQr?.call(qrContent);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getAll,
+    TResult Function(Destinatario destinatario)? add,
+    TResult Function(Destinatario destinatario)? update,
+    TResult Function(int id)? delete,
+    TResult Function(String qrContent)? scanQr,
+    required TResult orElse(),
+  }) {
+    if (scanQr != null) {
+      return scanQr(qrContent);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetAllDestinatario value) getAll,
+    required TResult Function(_AddDestinatario value) add,
+    required TResult Function(_UpdateDestinatario value) update,
+    required TResult Function(_DeleteDestinatario value) delete,
+    required TResult Function(_ScanQr value) scanQr,
+  }) {
+    return scanQr(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetAllDestinatario value)? getAll,
+    TResult? Function(_AddDestinatario value)? add,
+    TResult? Function(_UpdateDestinatario value)? update,
+    TResult? Function(_DeleteDestinatario value)? delete,
+    TResult? Function(_ScanQr value)? scanQr,
+  }) {
+    return scanQr?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetAllDestinatario value)? getAll,
+    TResult Function(_AddDestinatario value)? add,
+    TResult Function(_UpdateDestinatario value)? update,
+    TResult Function(_DeleteDestinatario value)? delete,
+    TResult Function(_ScanQr value)? scanQr,
+    required TResult orElse(),
+  }) {
+    if (scanQr != null) {
+      return scanQr(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ScanQr implements DestinatarioEvent {
+  const factory _ScanQr(final String qrContent) = _$ScanQrImpl;
+
+  String get qrContent;
+  @JsonKey(ignore: true)
+  _$$ScanQrImplCopyWith<_$ScanQrImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

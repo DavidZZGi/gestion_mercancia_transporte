@@ -12,4 +12,6 @@ class DestinatarioRepository {
       await destinatarioService.deleteDestinatario(destinatarioId);
   Future<void> createDestinatario({required Destinatario destinatario}) async =>
       await destinatarioService.createDestinatario(destinatario);
+  Future<void> createDestinatarioFromQr({required String qrCode}) async =>
+      await destinatarioService.createDestinatarioFromQr(qrCode);
 }

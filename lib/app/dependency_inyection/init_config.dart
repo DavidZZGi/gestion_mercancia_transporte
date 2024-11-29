@@ -8,15 +8,16 @@ import 'package:gestion_mercancia_transporte/authentication/state_managament/cha
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_in_bloc/bloc/sign_in_bloc.dart';
 import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/destinatario_repository.dart';
 import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/service/destinatario_service.dart';
+import 'package:gestion_mercancia_transporte/destinatario/domain/create_destinatario_from_qr_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/create_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/delete_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/get_destinatarios_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/update_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/create_transport_request_use_case.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/delete_transport_request_use_case.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/get_transport_request_use_case.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/update_request_status_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/create_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/delete_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/get_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/update_request_status_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/state_managament/bloc/transport_request_bloc.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/service/transport_request_service.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/transport_request_repository.dart';
@@ -81,8 +82,13 @@ FutureOr<void> initCore(GetIt sl) async {
       () => DeleteDestinatarioUseCase(
           destinatarioRepository: sl<DestinatarioRepository>()),
     )
+    ..registerLazySingleton<CreateDestinatarioFromQrUseCase>(
+      () => CreateDestinatarioFromQrUseCase(
+          destinatarioRepository: sl<DestinatarioRepository>()),
+    )
     ..registerLazySingleton<DestinatarioBloc>(
       () => DestinatarioBloc(
+          createDestinatarioFromQr: sl<CreateDestinatarioFromQrUseCase>(),
           createDestinatarioUseCase: sl<CreateDestinatarioUseCase>(),
           deleteDestinatarioUseCase: sl<DeleteDestinatarioUseCase>(),
           getDestinatariosUseCase: sl<GetDestinatariosUseCase>(),

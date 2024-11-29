@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gestion_mercancia_transporte/app/core/no_params.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/create_transport_request_use_case.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/delete_transport_request_use_case.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/get_transport_request_use_case.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/param_models/update_request_status_params.dart';
-import 'package:gestion_mercancia_transporte/transport_request/module/update_request_status_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/create_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/delete_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/get_transport_request_use_case.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/param_models/update_request_status_params.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/update_request_status_use_case.dart';
 
 import '../../transport_request_repository/models/transport_request.dart';
 

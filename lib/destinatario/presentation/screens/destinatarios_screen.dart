@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestion_mercancia_transporte/destinatario/presentation/widgets/destinatario_form.dart';
 import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
 
+import '../../../app/routes/router/app_router.gr.dart';
 import '../widgets/destinatario_list.dart';
 
 @RoutePage()
@@ -19,7 +20,11 @@ class DestinatariosScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.qr_code_scanner),
             onPressed: () {
-              // Acción para escanear código QR
+              context.router.push(QrScannerRoute(onScanComplete: (qrCode) {
+                context
+                    .read<DestinatarioBloc>()
+                    .add(DestinatarioEvent.scanQr(qrCode));
+              }));
             },
           ),
         ],

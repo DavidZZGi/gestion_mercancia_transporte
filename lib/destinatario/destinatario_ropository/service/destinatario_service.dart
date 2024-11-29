@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/models/destinatario.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -44,5 +46,17 @@ class DestinatarioService implements DestinatarioInterface {
       where: 'id = ?',
       whereArgs: [destinatario.id],
     );
+  }
+
+  @override
+  Future<void> createDestinatarioFromQr(String qrContent) async {
+    final db = await databaseHelper.database;
+    try {
+      final data = json.decode(qrContent) as Map<String, dynamic>;
+      final recipient = Destinatario.fromJson(data);
+      await db.insert(destinatarioTable, recipient.toJson());
+    } catch (e) {
+      throw Exception("QR inválido o datos no válidos.");
+    }
   }
 }

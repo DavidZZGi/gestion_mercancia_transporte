@@ -32,5 +32,9 @@ class AppRouter extends $AppRouter {
           page: TransportRequestRoute.page,
           path: '/transport_request',
         ),
+        AutoRoute(
+          page: QrScannerRoute.page,
+          path: '/qr-code',
+        ),
       ];
 }

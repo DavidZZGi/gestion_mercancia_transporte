@@ -10,4 +10,5 @@ class DestinatarioEvent with _$DestinatarioEvent {
       _UpdateDestinatario;
   const factory DestinatarioEvent.delete({required int id}) =
       _DeleteDestinatario;
+  const factory DestinatarioEvent.scanQr(String qrContent) = _ScanQr;
 }
