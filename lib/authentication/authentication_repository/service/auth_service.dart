@@ -11,6 +11,7 @@ import '../models/user.dart';
 class AuthService implements AuthInterface {
   final DatabaseHelper databaseHelper;
   final String userTable = 'users';
+  final _pref = AppPreferences();
   AuthService({required this.databaseHelper});
 
   @override
@@ -27,21 +28,23 @@ class AuthService implements AuthInterface {
 
     if (results.isNotEmpty) {
       final token = _generateAuthToken(email);
-      await AppPreferences.setAuthToken(token);
-      return User.fromJson(results.first);
+      _pref.setAuthToken(token);
+      final user = User.fromJson(results.first);
+      _pref.setUserId(user.id!);
+      return user;
     }
     return null;
   }
 
   @override
   bool isAuthenticated() {
-    return AppPreferences.isAuthenticated();
+    return _pref.isAuthenticated();
   }
 
   /// Cierra sesión y elimina el token
   @override
   Future<void> logOut() async {
-    await AppPreferences.clearAuthToken();
+    await _pref.clearAuthToken();
   }
 
   @override

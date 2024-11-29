@@ -7,7 +7,8 @@ part 'destinatario.g.dart';
 @JsonSerializable()
 class Destinatario with _$Destinatario {
   const factory Destinatario({
-    required int id,
+    int? id,
+    required int userId,
     required String name,
     required String address,
     required String phone,

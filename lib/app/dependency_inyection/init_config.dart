@@ -3,8 +3,12 @@ import 'dart:async';
 import 'package:gestion_mercancia_transporte/authentication/authentication_repository/authentication_repository.dart';
 import 'package:gestion_mercancia_transporte/authentication/authentication_repository/service/auth_service.dart';
 import 'package:gestion_mercancia_transporte/authentication/domain/change_password_use_case.dart';
+import 'package:gestion_mercancia_transporte/authentication/domain/is_authenticated_use_case.dart';
+import 'package:gestion_mercancia_transporte/authentication/domain/logout_use_case.dart';
 import 'package:gestion_mercancia_transporte/authentication/domain/sign_in_use_case.dart';
+import 'package:gestion_mercancia_transporte/authentication/state_managament/authentication_cubit/cubit/authentication_cubit.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/change_password_bloc/bloc/change_password_bloc.dart';
+import 'package:gestion_mercancia_transporte/authentication/state_managament/logout_cubit/cubit/logout_cubit.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_in_bloc/bloc/sign_in_bloc.dart';
 import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/destinatario_repository.dart';
 import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/service/destinatario_service.dart';
@@ -39,6 +43,14 @@ FutureOr<void> initCore(GetIt sl) async {
     ..registerLazySingleton<AuthenticationRepository>(
       () => AuthenticationRepository(authService: sl<AuthService>()),
     )
+    ..registerLazySingleton<IsAuthenticatedUseCase>(
+      () => IsAuthenticatedUseCase(
+          authenticationRepository: sl<AuthenticationRepository>()),
+    )
+    ..registerLazySingleton<LogoutUseCase>(
+      () => LogoutUseCase(
+          authenticationRepository: sl<AuthenticationRepository>()),
+    )
     ..registerLazySingleton<SignInUseCase>(
       () => SignInUseCase(
           authenticationRepository: sl<AuthenticationRepository>()),
@@ -60,6 +72,13 @@ FutureOr<void> initCore(GetIt sl) async {
     ..registerLazySingleton<ChangePasswordBloc>(
       () => ChangePasswordBloc(
           changePasswordUseCase: sl<ChangePasswordUseCase>()),
+    )
+    ..registerLazySingleton<AuthenticationCubit>(
+      () => AuthenticationCubit(
+          isAuthenticatedUseCase: sl<IsAuthenticatedUseCase>()),
+    )
+    ..registerLazySingleton<LogoutCubit>(
+      () => LogoutCubit(logoutUseCase: sl<LogoutUseCase>()),
     )
     ..registerLazySingleton<DestinatarioService>(
       () => DestinatarioService(databaseHelper: sqliteInstance),

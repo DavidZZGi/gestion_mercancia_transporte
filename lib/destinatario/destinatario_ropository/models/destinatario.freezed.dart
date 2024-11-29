@@ -20,7 +20,8 @@ Destinatario _$DestinatarioFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Destinatario {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -37,7 +38,7 @@ abstract class $DestinatarioCopyWith<$Res> {
           Destinatario value, $Res Function(Destinatario) then) =
       _$DestinatarioCopyWithImpl<$Res, Destinatario>;
   @useResult
-  $Res call({int id, String name, String address, String phone});
+  $Res call({int? id, int userId, String name, String address, String phone});
 }
 
 /// @nodoc
@@ -53,15 +54,20 @@ class _$DestinatarioCopyWithImpl<$Res, $Val extends Destinatario>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? userId = null,
     Object? name = null,
     Object? address = null,
     Object? phone = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -87,7 +93,7 @@ abstract class _$$DestinatarioImplCopyWith<$Res>
       __$$DestinatarioImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String address, String phone});
+  $Res call({int? id, int userId, String name, String address, String phone});
 }
 
 /// @nodoc
@@ -101,15 +107,20 @@ class __$$DestinatarioImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? userId = null,
     Object? name = null,
     Object? address = null,
     Object? phone = null,
   }) {
     return _then(_$DestinatarioImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -131,7 +142,8 @@ class __$$DestinatarioImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DestinatarioImpl implements _Destinatario {
   const _$DestinatarioImpl(
-      {required this.id,
+      {this.id,
+      required this.userId,
       required this.name,
       required this.address,
       required this.phone});
@@ -140,7 +152,9 @@ class _$DestinatarioImpl implements _Destinatario {
       _$$DestinatarioImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
+  @override
+  final int userId;
   @override
   final String name;
   @override
@@ -150,7 +164,7 @@ class _$DestinatarioImpl implements _Destinatario {
 
   @override
   String toString() {
-    return 'Destinatario(id: $id, name: $name, address: $address, phone: $phone)';
+    return 'Destinatario(id: $id, userId: $userId, name: $name, address: $address, phone: $phone)';
   }
 
   @override
@@ -159,6 +173,7 @@ class _$DestinatarioImpl implements _Destinatario {
         (other.runtimeType == runtimeType &&
             other is _$DestinatarioImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.phone, phone) || other.phone == phone));
@@ -166,7 +181,8 @@ class _$DestinatarioImpl implements _Destinatario {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, address, phone);
+  int get hashCode =>
+      Object.hash(runtimeType, id, userId, name, address, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -184,7 +200,8 @@ class _$DestinatarioImpl implements _Destinatario {
 
 abstract class _Destinatario implements Destinatario {
   const factory _Destinatario(
-      {required final int id,
+      {final int? id,
+      required final int userId,
       required final String name,
       required final String address,
       required final String phone}) = _$DestinatarioImpl;
@@ -193,7 +210,9 @@ abstract class _Destinatario implements Destinatario {
       _$DestinatarioImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
+  @override
+  int get userId;
   @override
   String get name;
   @override

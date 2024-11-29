@@ -26,7 +26,7 @@ class DestinatarioListItem extends StatelessWidget {
             if (value == 'edit') {
               _showEditDialog(context, destinatario);
             } else if (value == 'delete') {
-              _showDeleteConfirmation(context, destinatario.id);
+              _showDeleteConfirmation(context, destinatario.id!);
             }
           },
           itemBuilder: (context) => [

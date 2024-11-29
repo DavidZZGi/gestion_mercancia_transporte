@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 
 import '../../transport_request_repository/models/transport_request.dart';
 
@@ -22,6 +23,7 @@ class _TransportRequestFormDialogState
   final _formKey = GlobalKey<FormState>();
   late String _destinationName;
   late RequestStatus _status;
+  final _prefs = AppPreferences();
 
   @override
   void initState() {
@@ -81,6 +83,8 @@ class _TransportRequestFormDialogState
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final request = TransportRequest(
+        userId: _prefs.getUserId()!,
+        recipientId: 0,
         id: widget.initialRequest?.id ?? 0,
         destinationName: _destinationName,
         status: _status,

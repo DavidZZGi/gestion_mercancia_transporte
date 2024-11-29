@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/models/destinatario.dart';
 
 class DestinatarioForm extends StatefulWidget {
@@ -20,7 +21,7 @@ class _DestinatarioFormState extends State<DestinatarioForm> {
   late String _name;
   late String _address;
   late String _phone;
-
+  final _pref = AppPreferences();
   @override
   void initState() {
     super.initState();
@@ -82,6 +83,7 @@ class _DestinatarioFormState extends State<DestinatarioForm> {
       _formKey.currentState!.save();
 
       final recipient = Destinatario(
+        userId: _pref.getUserId()!,
         id: widget.initialDestinatario?.id ?? 0,
         name: _name,
         address: _address,

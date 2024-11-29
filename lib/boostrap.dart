@@ -8,6 +8,5 @@ GetIt sl = GetIt.I;
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   await initCore(sl);
-
   runApp(await builder());
 }

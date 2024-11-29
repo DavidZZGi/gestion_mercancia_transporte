@@ -36,7 +36,8 @@ class DatabaseHelper {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             address TEXT NOT NULL,
-            phone TEXT NOT NULL
+            phone TEXT NOT NULL,
+            FOREIGN KEY(userId) REFERENCES users(id)
           );
         ''');
         await db.execute('''
@@ -45,7 +46,8 @@ class DatabaseHelper {
             recipientId INTEGER NOT NULL,
             status INTEGER NOT NULL,
             createdAt TEXT NOT NULL,
-            FOREIGN KEY(recipientId) REFERENCES recipients(id)
+            FOREIGN KEY(recipientId) REFERENCES recipients(id),
+            FOREIGN KEY(userId) REFERENCES users(id)
           );
         ''');
       },

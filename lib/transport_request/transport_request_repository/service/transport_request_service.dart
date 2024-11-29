@@ -1,10 +1,12 @@
 import 'package:gestion_mercancia_transporte/app/data/database_helper.dart';
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/interface/transport_request_interface.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/models/transport_request.dart';
 
 class TransportRequestService implements TransportRequestInterface {
   final DatabaseHelper databaseHelper;
   final String tableNmae = 'transport_requests';
+  final _prefs = AppPreferences();
   TransportRequestService({required this.databaseHelper});
   @override
   Future<void> createTransportRequest(TransportRequest request) async {
@@ -35,6 +37,9 @@ class TransportRequestService implements TransportRequestInterface {
 
     return results
         .map((e) => TransportRequest(
+              userId: _prefs.getUserId()!,
+              //TODO ver la relacion con recipent
+              recipientId: 0,
               id: e['id'] as int,
               destinationName: e['destinationName'] as String,
               status: RequestStatus.values.byName(e['status'] as String),

@@ -10,7 +10,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gestión de Transporte de Mercancías'),
+        title: const Text(
+          'Gestión de Transporte de Mercancías',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
         actions: [
           IconButton(
             onPressed: () {

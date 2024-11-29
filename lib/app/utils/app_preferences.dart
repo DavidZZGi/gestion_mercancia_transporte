@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPreferences {
   static const String _authTokenKey = "auth_token";
+  static const String _userIdKey = "user_id";
 
   static late SharedPreferences _preferences;
 
@@ -10,23 +11,38 @@ class AppPreferences {
     _preferences = await SharedPreferences.getInstance();
   }
 
+  int? getUserId() {
+    final userId = _preferences.getInt(_userIdKey);
+    return userId;
+  }
+
+  // Guarda el ID del usuario autenticado
+  Future<void> setUserId(int userId) async {
+    await _preferences.setInt(_userIdKey, userId);
+  }
+
+  // Limpia el ID del usuario
+  Future<void> clearUserId() async {
+    await _preferences.remove(_userIdKey);
+  }
+
   /// Guarda el token de autenticación
-  static Future<void> setAuthToken(String token) async {
+  Future<void> setAuthToken(String token) async {
     await _preferences.setString(_authTokenKey, token);
   }
 
   /// Obtiene el token de autenticación
-  static String? getAuthToken() {
+  String? getAuthToken() {
     return _preferences.getString(_authTokenKey);
   }
 
   /// Limpia el token de autenticación
-  static Future<void> clearAuthToken() async {
+  Future<void> clearAuthToken() async {
     await _preferences.remove(_authTokenKey);
   }
 
   /// Comprueba si el usuario está autenticado
-  static bool isAuthenticated() {
+  bool isAuthenticated() {
     final token = getAuthToken();
     return token != null && token.isNotEmpty;
   }

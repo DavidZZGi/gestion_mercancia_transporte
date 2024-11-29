@@ -26,7 +26,7 @@ class TransportRequestListItem extends StatelessWidget {
             if (value == 'edit') {
               _showEditDialog(context, request);
             } else if (value == 'delete') {
-              _showDeleteConfirmation(context, request.id);
+              _showDeleteConfirmation(context, request.id!);
             }
           },
           itemBuilder: (context) => [

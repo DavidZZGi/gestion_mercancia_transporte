@@ -17,9 +17,11 @@ enum RequestStatus {
 @JsonSerializable()
 class TransportRequest with _$TransportRequest {
   const factory TransportRequest({
-    required int id, // ID único de la solicitud
-    required String destinationName, // Nombre del destinatario
-    required RequestStatus status, // Estado actual de la solicitud
+    int? id,
+    required int userId,
+    required int recipientId,
+    required String destinationName,
+    required RequestStatus status,
   }) = _TransportRequest;
 
   /// Genera un modelo desde un JSON.

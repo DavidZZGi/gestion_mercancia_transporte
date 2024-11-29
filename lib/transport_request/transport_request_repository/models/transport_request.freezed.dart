@@ -20,9 +20,10 @@ TransportRequest _$TransportRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TransportRequest {
-  int get id => throw _privateConstructorUsedError; // ID único de la solicitud
-  String get destinationName =>
-      throw _privateConstructorUsedError; // Nombre del destinatario
+  int? get id => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+  int get recipientId => throw _privateConstructorUsedError;
+  String get destinationName => throw _privateConstructorUsedError;
   RequestStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +38,12 @@ abstract class $TransportRequestCopyWith<$Res> {
           TransportRequest value, $Res Function(TransportRequest) then) =
       _$TransportRequestCopyWithImpl<$Res, TransportRequest>;
   @useResult
-  $Res call({int id, String destinationName, RequestStatus status});
+  $Res call(
+      {int? id,
+      int userId,
+      int recipientId,
+      String destinationName,
+      RequestStatus status});
 }
 
 /// @nodoc
@@ -53,14 +59,24 @@ class _$TransportRequestCopyWithImpl<$Res, $Val extends TransportRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? userId = null,
+    Object? recipientId = null,
     Object? destinationName = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      recipientId: null == recipientId
+          ? _value.recipientId
+          : recipientId // ignore: cast_nullable_to_non_nullable
               as int,
       destinationName: null == destinationName
           ? _value.destinationName
@@ -82,7 +98,12 @@ abstract class _$$TransportRequestImplCopyWith<$Res>
       __$$TransportRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String destinationName, RequestStatus status});
+  $Res call(
+      {int? id,
+      int userId,
+      int recipientId,
+      String destinationName,
+      RequestStatus status});
 }
 
 /// @nodoc
@@ -96,14 +117,24 @@ class __$$TransportRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? userId = null,
+    Object? recipientId = null,
     Object? destinationName = null,
     Object? status = null,
   }) {
     return _then(_$TransportRequestImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      recipientId: null == recipientId
+          ? _value.recipientId
+          : recipientId // ignore: cast_nullable_to_non_nullable
               as int,
       destinationName: null == destinationName
           ? _value.destinationName
@@ -121,23 +152,29 @@ class __$$TransportRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TransportRequestImpl implements _TransportRequest {
   const _$TransportRequestImpl(
-      {required this.id, required this.destinationName, required this.status});
+      {this.id,
+      required this.userId,
+      required this.recipientId,
+      required this.destinationName,
+      required this.status});
 
   factory _$TransportRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$TransportRequestImplFromJson(json);
 
   @override
-  final int id;
-// ID único de la solicitud
+  final int? id;
+  @override
+  final int userId;
+  @override
+  final int recipientId;
   @override
   final String destinationName;
-// Nombre del destinatario
   @override
   final RequestStatus status;
 
   @override
   String toString() {
-    return 'TransportRequest(id: $id, destinationName: $destinationName, status: $status)';
+    return 'TransportRequest(id: $id, userId: $userId, recipientId: $recipientId, destinationName: $destinationName, status: $status)';
   }
 
   @override
@@ -146,6 +183,9 @@ class _$TransportRequestImpl implements _TransportRequest {
         (other.runtimeType == runtimeType &&
             other is _$TransportRequestImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.recipientId, recipientId) ||
+                other.recipientId == recipientId) &&
             (identical(other.destinationName, destinationName) ||
                 other.destinationName == destinationName) &&
             (identical(other.status, status) || other.status == status));
@@ -153,7 +193,8 @@ class _$TransportRequestImpl implements _TransportRequest {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, destinationName, status);
+  int get hashCode => Object.hash(
+      runtimeType, id, userId, recipientId, destinationName, status);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +213,9 @@ class _$TransportRequestImpl implements _TransportRequest {
 
 abstract class _TransportRequest implements TransportRequest {
   const factory _TransportRequest(
-      {required final int id,
+      {final int? id,
+      required final int userId,
+      required final int recipientId,
       required final String destinationName,
       required final RequestStatus status}) = _$TransportRequestImpl;
 
@@ -180,10 +223,14 @@ abstract class _TransportRequest implements TransportRequest {
       _$TransportRequestImpl.fromJson;
 
   @override
-  int get id;
-  @override // ID único de la solicitud
+  int? get id;
+  @override
+  int get userId;
+  @override
+  int get recipientId;
+  @override
   String get destinationName;
-  @override // Nombre del destinatario
+  @override
   RequestStatus get status;
   @override
   @JsonKey(ignore: true)

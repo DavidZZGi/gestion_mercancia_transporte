@@ -9,6 +9,7 @@ part of 'destinatario.dart';
 Map<String, dynamic> _$DestinatarioToJson(Destinatario instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'userId': instance.userId,
       'name': instance.name,
       'address': instance.address,
       'phone': instance.phone,
@@ -16,7 +17,8 @@ Map<String, dynamic> _$DestinatarioToJson(Destinatario instance) =>
 
 _$DestinatarioImpl _$$DestinatarioImplFromJson(Map<String, dynamic> json) =>
     _$DestinatarioImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
+      userId: (json['userId'] as num).toInt(),
       name: json['name'] as String,
       address: json['address'] as String,
       phone: json['phone'] as String,
@@ -25,6 +27,7 @@ _$DestinatarioImpl _$$DestinatarioImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$DestinatarioImplToJson(_$DestinatarioImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'userId': instance.userId,
       'name': instance.name,
       'address': instance.address,
       'phone': instance.phone,

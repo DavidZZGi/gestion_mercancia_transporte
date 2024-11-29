@@ -60,7 +60,7 @@ class TransportRequestBloc
     try {
       await updateRequestStatusTransportRequestUseCase.call(
           UpdateRequestStatusParams(
-              id: event.request.id, status: event.request.status));
+              id: event.request.id!, status: event.request.status));
       add(const TransportRequestEvent.getAll());
     } catch (e) {
       emit(TransportRequestState.error(e.toString()));
