@@ -20,4 +20,7 @@ class AuthenticationRepository {
       {required int userId, required String newPassword}) async {
     await authService.changePassword(userId: userId, newPassword: newPassword);
   }
+
+  bool isAuthenticated() => authService.isAuthenticated();
+  Future<void> logOut() async => await authService.logOut();
 }

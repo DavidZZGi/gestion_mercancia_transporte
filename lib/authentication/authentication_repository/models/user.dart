@@ -7,7 +7,7 @@ part 'user.g.dart';
 @JsonSerializable()
 class User with _$User {
   const factory User({
-    required int id,
+    int? id,
     required String username,
     required String email,
     required String passwordHash,

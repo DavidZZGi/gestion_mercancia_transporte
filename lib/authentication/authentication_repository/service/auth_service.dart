@@ -5,6 +5,7 @@ import 'package:gestion_mercancia_transporte/authentication/authentication_repos
 import 'package:sqflite/sqflite.dart';
 import 'package:crypto/crypto.dart';
 
+import '../../../app/utils/app_preferences.dart';
 import '../models/user.dart';
 
 class AuthService implements AuthInterface {
@@ -25,17 +26,33 @@ class AuthService implements AuthInterface {
     );
 
     if (results.isNotEmpty) {
+      final token = _generateAuthToken(email);
+      await AppPreferences.setAuthToken(token);
       return User.fromJson(results.first);
     }
     return null;
   }
 
   @override
+  bool isAuthenticated() {
+    return AppPreferences.isAuthenticated();
+  }
+
+  /// Cierra sesión y elimina el token
+  @override
+  Future<void> logOut() async {
+    await AppPreferences.clearAuthToken();
+  }
+
+  @override
   Future<void> signUp({required User user}) async {
     final db = await databaseHelper.database;
+    final userwithPass =
+        user.copyWith(passwordHash: _hashPassword(user.passwordHash));
+    print(userwithPass);
     await db.insert(
       userTable,
-      user.toJson(),
+      userwithPass.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
@@ -57,5 +74,10 @@ class AuthService implements AuthInterface {
   String _hashPassword(String password) {
     final bytes = utf8.encode(password);
     return sha256.convert(bytes).toString();
+  }
+
+  String _generateAuthToken(String email) {
+    // En una aplicación real, este token vendría de un servidor
+    return 'token_${email}_${DateTime.now().millisecondsSinceEpoch}';
   }
 }

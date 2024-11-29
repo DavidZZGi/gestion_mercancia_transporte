@@ -26,8 +26,10 @@ import 'package:get_it/get_it.dart';
 import '../../authentication/domain/sign_up_use_case.dart';
 import '../../authentication/state_managament/sign_up_bloc/bloc/sign_up_bloc.dart';
 import '../data/database_helper.dart';
+import '../utils/app_preferences.dart';
 
 FutureOr<void> initCore(GetIt sl) async {
+  await AppPreferences.init();
   await DatabaseHelper.instance.initDatabase();
   final sqliteInstance = DatabaseHelper.instance;
   sl

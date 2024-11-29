@@ -8,6 +8,7 @@ class SignUpScreen extends StatelessWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   final TextEditingController repeatPassword = TextEditingController();
+  final TextEditingController username = TextEditingController();
   SignUpScreen({super.key});
 
   @override
@@ -15,6 +16,9 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(),
         body: SignUpBody(
-            email: email, password: password, repeatPassword: repeatPassword));
+            username: username,
+            email: email,
+            password: password,
+            repeatPassword: repeatPassword));
   }
 }

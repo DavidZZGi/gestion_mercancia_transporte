@@ -32,9 +32,9 @@ class DestinatariosScreen extends StatelessWidget {
       body: BlocBuilder<DestinatarioBloc, DestinatarioState>(
         builder: (context, state) {
           return state.when(
-            initial: () =>
-                const Center(child: Text('Cargando destinatarios...')),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            initial: () => const Center(child: Text('Destinatarios...')),
+            loading: () =>
+                const Center(child: CircularProgressIndicator.adaptive()),
             loaded: (recipients) => DestinatarioList(destinatarios: recipients),
             error: (message) => Center(child: Text('Error: $message')),
           );

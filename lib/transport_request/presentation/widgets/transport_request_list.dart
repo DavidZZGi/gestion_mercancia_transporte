@@ -5,8 +5,7 @@ import 'transport_request_list_item.dart';
 class TransportRequestList extends StatelessWidget {
   final List<TransportRequest> requests;
 
-  const TransportRequestList({Key? key, required this.requests})
-      : super(key: key);
+  const TransportRequestList({super.key, required this.requests});
 
   @override
   Widget build(BuildContext context) {

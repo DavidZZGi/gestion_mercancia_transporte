@@ -36,7 +36,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
   void _onQRViewCreated(QRViewController qrController) {
     controller = qrController;
     qrController.scannedDataStream.listen((scanData) {
-      widget.onScanComplete(scanData.code ?? '');
+      widget.onScanComplete(scanData.code);
       controller?.dispose();
       Navigator.of(context).pop();
     });

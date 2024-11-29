@@ -88,10 +88,4 @@ class DestinatarioBloc extends Bloc<DestinatarioEvent, DestinatarioState> {
       emit(_Error(message: e.toString()));
     }
   }
-
-  Future<String> _scanQrCode() async {
-    // Utiliza el plugin para escanear el QR
-    // Aquí es donde integraremos la vista del scanner
-    throw UnimplementedError("Implementa la lógica del QR Scanner.");
-  }
 }
