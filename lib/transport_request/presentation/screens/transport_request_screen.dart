@@ -25,11 +25,23 @@ class TransportRequestPage extends StatelessWidget {
       body: BlocBuilder<TransportRequestBloc, TransportRequestState>(
         builder: (context, state) {
           return state.when(
-            initial: () => const Center(child: Text('Cargando solicitudes...')),
+            initial: () {
+              context
+                  .read<TransportRequestBloc>()
+                  .add(const TransportRequestEvent.getAll());
+              return const SizedBox.shrink();
+            },
             loading: () => const Center(child: CircularProgressIndicator()),
-            loaded: (requests) => TransportRequestList(
-              requests: requests,
-            ),
+            loaded: (requests) {
+              if (requests.isEmpty) {
+                return const Center(
+                    child: Text('No hay solicitudes disponibles'));
+              } else {
+                return TransportRequestList(
+                  requests: requests,
+                );
+              }
+            },
             error: (message) => Center(child: Text('Error: $message')),
           );
         },

@@ -31,11 +31,27 @@ class DestinatariosScreen extends StatelessWidget {
       ),
       body: BlocBuilder<DestinatarioBloc, DestinatarioState>(
         builder: (context, state) {
+          print('DestinatarioBloc: $state');
           return state.when(
-            initial: () => const Center(child: Text('Destinatarios...')),
+            initial: () {
+              context
+                  .read<DestinatarioBloc>()
+                  .add(const DestinatarioEvent.getAll());
+              return const SizedBox.shrink();
+            }
+            // const Center(child: Text('No hay destinatarios disponibles'))
+            ,
             loading: () =>
                 const Center(child: CircularProgressIndicator.adaptive()),
-            loaded: (recipients) => DestinatarioList(destinatarios: recipients),
+            loaded: (recipients) {
+              if (recipients.isEmpty) {
+                return const Center(
+                  child: Text('No hay destinatarios registrados'),
+                );
+              } else {
+                return DestinatarioList(destinatarios: recipients);
+              }
+            },
             error: (message) => Center(child: Text('Error: $message')),
           );
         },

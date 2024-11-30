@@ -46,11 +46,11 @@ class TransportRequestListItem extends StatelessWidget {
 
   IconData _getIconForStatus(String status) {
     switch (status) {
-      case 'Preparando':
+      case 'preparando':
         return Icons.pending;
-      case 'Trasladándose':
+      case 'trasladandose':
         return Icons.local_shipping;
-      case 'Entregada':
+      case 'entregada':
         return Icons.check_circle;
       default:
         return Icons.error;
@@ -59,11 +59,11 @@ class TransportRequestListItem extends StatelessWidget {
 
   Color _getColorForStatus(String status) {
     switch (status) {
-      case 'Preparando':
+      case 'preparando':
         return Colors.orange;
-      case 'Trasladándose':
+      case 'trasladandose':
         return Colors.blue;
-      case 'Entregada':
+      case 'entregada':
         return Colors.green;
       default:
         return Colors.red;

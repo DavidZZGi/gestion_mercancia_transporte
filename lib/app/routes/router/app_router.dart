@@ -41,6 +41,10 @@ class AppRouter extends $AppRouter {
           path: '/destinatario',
         ),
         AutoRoute(
+          page: ChangePasswordRoute.page,
+          path: '/change_password',
+        ),
+        AutoRoute(
           page: QrScannerRoute.page,
           path: '/qr-code',
         ),

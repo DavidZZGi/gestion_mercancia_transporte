@@ -1,4 +1,5 @@
 import 'package:gestion_mercancia_transporte/app/data/database_helper.dart';
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/interface/transport_request_interface.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/models/transport_request.dart';
 import 'package:sqflite/sqflite.dart';
@@ -6,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 class TransportRequestService implements TransportRequestInterface {
   final DatabaseHelper databaseHelper;
   final String tableName = 'transport_requests';
+  final _pref = AppPreferences();
 
   TransportRequestService({required this.databaseHelper});
 
@@ -31,12 +33,12 @@ class TransportRequestService implements TransportRequestInterface {
   }
 
   @override
-  Future<List<TransportRequest>> getTransportRequests(int userId) async {
+  Future<List<TransportRequest>> getTransportRequests() async {
     final db = await databaseHelper.database;
     final List<Map<String, dynamic>> maps = await db.query(
       tableName,
       where: 'userId = ?',
-      whereArgs: [userId],
+      whereArgs: [_pref.getUserId()],
     );
     return maps.map((map) => TransportRequest.fromJson(map)).toList();
   }

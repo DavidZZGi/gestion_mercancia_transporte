@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
+import 'package:gestion_mercancia_transporte/app/core/no_params.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/create_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/delete_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/get_destinatarios_use_case.dart';
@@ -21,7 +21,6 @@ class DestinatarioBloc extends Bloc<DestinatarioEvent, DestinatarioState> {
   final UpdateDestinatarioUseCase updateDestinatarioUseCase;
   final DeleteDestinatarioUseCase deleteDestinatarioUseCase;
   final CreateDestinatarioFromQrUseCase createDestinatarioFromQr;
-  final _pref = AppPreferences();
   DestinatarioBloc(
       {required this.createDestinatarioUseCase,
       required this.deleteDestinatarioUseCase,
@@ -40,8 +39,7 @@ class DestinatarioBloc extends Bloc<DestinatarioEvent, DestinatarioState> {
       _GetAllDestinatario event, Emitter<DestinatarioState> emit) async {
     emit(const _Loading());
     try {
-      final destinatarios =
-          await getDestinatariosUseCase.call(_pref.getUserId()!);
+      final destinatarios = await getDestinatariosUseCase.call(NoParams());
       emit(_Loaded(destinatarios));
     } catch (e) {
       emit(_Error(message: e.toString()));

@@ -9,8 +9,8 @@ class TransportRequestRepository {
       await transportRequestService.deleteTransportRequest(id);
   Future<void> updateRequestStatus(TransportRequest transportRequest) async =>
       await transportRequestService.updateRequestStatus(transportRequest);
-  Future<List<TransportRequest>> getTransportRequests(int userId) async =>
-      await transportRequestService.getTransportRequests(userId);
+  Future<List<TransportRequest>> getTransportRequests() async =>
+      await transportRequestService.getTransportRequests();
   Future<void> createTransportRequest(TransportRequest request) async =>
       await transportRequestService.createTransportRequest(request);
 }

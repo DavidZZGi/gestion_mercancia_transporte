@@ -49,7 +49,7 @@ class DatabaseHelper {
             status INTEGER NOT NULL,
             createdAt TEXT NOT NULL,
             notes TEXT,
-            FOREIGN KEY(recipientId) REFERENCES recipients(id),
+            FOREIGN KEY(recipientId) REFERENCES recipients(id) ON DELETE CASCADE,
             FOREIGN KEY(userId) REFERENCES users(id)
           );
         ''');

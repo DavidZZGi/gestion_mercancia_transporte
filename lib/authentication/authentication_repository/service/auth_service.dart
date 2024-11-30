@@ -45,6 +45,7 @@ class AuthService implements AuthInterface {
   @override
   Future<void> logOut() async {
     await _pref.clearAuthToken();
+    print(_pref.getAuthToken());
   }
 
   @override

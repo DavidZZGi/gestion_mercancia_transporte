@@ -84,7 +84,7 @@ class _DestinatarioFormState extends State<DestinatarioForm> {
 
       final recipient = Destinatario(
         userId: _pref.getUserId()!,
-        id: widget.initialDestinatario?.id ?? 0,
+        id: widget.initialDestinatario?.id,
         name: _name,
         address: _address,
         phone: _phone,

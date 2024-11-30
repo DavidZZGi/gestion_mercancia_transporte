@@ -4,8 +4,8 @@ import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropositor
 class DestinatarioRepository {
   final DestinatarioService destinatarioService;
   DestinatarioRepository({required this.destinatarioService});
-  Future<List<Destinatario>> getAllDestinatarios(int userId) async =>
-      await destinatarioService.getAllDestinatarios(userId);
+  Future<List<Destinatario>> getAllDestinatarios() async =>
+      await destinatarioService.getAllDestinatarios();
   Future<void> updateDestinatario({required Destinatario destinatario}) async =>
       await destinatarioService.updateDestinatario(destinatario);
   Future<void> deleteDestinatario({required int destinatarioId}) async =>

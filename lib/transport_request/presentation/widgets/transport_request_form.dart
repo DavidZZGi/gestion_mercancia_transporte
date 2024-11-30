@@ -24,7 +24,7 @@ class _TransportRequestFormDialogState
   final _formKey = GlobalKey<FormState>();
   late int? _selectedRecipientId;
   late RequestStatus _status;
-  late String? _notes; // Nuevo campo
+  late String? _notes;
   final _prefs = AppPreferences();
 
   @override
@@ -32,8 +32,7 @@ class _TransportRequestFormDialogState
     super.initState();
     _selectedRecipientId = widget.initialRequest?.recipientId;
     _status = widget.initialRequest?.status ?? RequestStatus.preparando;
-    _notes = widget.initialRequest?.notes; // Inicializar notas
-
+    _notes = widget.initialRequest?.notes;
     // Cargar destinatarios del Bloc
     context.read<DestinatarioBloc>().add(const DestinatarioEvent.getAll());
   }
@@ -127,7 +126,7 @@ class _TransportRequestFormDialogState
       final request = TransportRequest(
         userId: _prefs.getUserId()!,
         recipientId: _selectedRecipientId!,
-        id: widget.initialRequest?.id ?? 0,
+        id: widget.initialRequest?.id,
         status: _status,
         notes: _notes, // Guardar notas
         createdAt: widget.initialRequest?.createdAt ?? DateTime.now(),

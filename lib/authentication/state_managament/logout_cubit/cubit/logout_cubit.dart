@@ -11,10 +11,11 @@ class LogoutCubit extends Cubit<LogoutState> {
   LogoutCubit({required this.logoutUseCase})
       : super(const LogoutState.initial());
 
-  Future<void> logOut() async {
+  void logOut() async {
+    emit(const LogoutState.initial());
     try {
       await logoutUseCase.call(NoParams());
-      emit(const _Success());
+      emit(const LogoutState.success());
     } catch (e) {
       emit(_Error(e.toString()));
     }

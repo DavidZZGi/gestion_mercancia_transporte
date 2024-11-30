@@ -2,7 +2,7 @@ import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropositor
 
 abstract class DestinatarioInterface {
   Future<void> updateDestinatario(Destinatario destinatario);
-  Future<List<Destinatario>> getAllDestinatarios(int userId);
+  Future<List<Destinatario>> getAllDestinatarios();
   Future<void> createDestinatario(Destinatario destinatario);
   Future<void> deleteDestinatario(int destinatarioId);
   Future<void> createDestinatarioFromQr(String qrContent);

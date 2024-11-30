@@ -5,11 +5,11 @@ import '../transport_request_repository/models/transport_request.dart';
 import '../transport_request_repository/transport_request_repository.dart';
 
 class GetTransportRequestUseCase
-    implements UseCase<Future<List<TransportRequest>>, int> {
+    implements UseCase<Future<List<TransportRequest>>, NoParams> {
   final TransportRequestRepository transportRequestRepository;
   GetTransportRequestUseCase({required this.transportRequestRepository});
 
   @override
-  Future<List<TransportRequest>> call(int params) async =>
-      await transportRequestRepository.getTransportRequests(params);
+  Future<List<TransportRequest>> call(NoParams params) async =>
+      await transportRequestRepository.getTransportRequests();
 }

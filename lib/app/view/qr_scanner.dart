@@ -15,6 +15,7 @@ class QrScannerPage extends StatefulWidget {
 class _QrScannerPageState extends State<QrScannerPage> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
+  String? errorMessage;
 
   @override
   void dispose() {
@@ -26,19 +27,62 @@ class _QrScannerPageState extends State<QrScannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Escanear Código QR')),
-      body: QRView(
-        key: qrKey,
-        onQRViewCreated: _onQRViewCreated,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (errorMessage != null)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                errorMessage!,
+                style: TextStyle(color: Colors.red, fontSize: 16),
+              ),
+            ),
+          Expanded(
+            child: QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
+            ),
+          ),
+        ],
       ),
     );
   }
 
   void _onQRViewCreated(QRViewController qrController) {
     controller = qrController;
+
     qrController.scannedDataStream.listen((scanData) {
-      widget.onScanComplete(scanData.code);
-      controller?.dispose();
-      Navigator.of(context).pop();
+      try {
+        // Validar que el contenido del QR tenga el formato correcto
+        String qrContent = scanData.code;
+
+        // Aquí asumes que el QR tiene la información de un destinatario
+        // La validación puede ser más específica dependiendo del formato del QR
+        if (qrContent.isEmpty || !qrContent.contains(':')) {
+          throw FormatException('Contenido de QR inválido');
+        }
+
+        // Llamar al callback con el contenido del QR
+        widget.onScanComplete(qrContent);
+
+        // Si todo es correcto, cerrar el escáner
+        controller?.dispose();
+        Navigator.of(context).pop();
+      } catch (e) {
+        // Manejar el error y mostrar un mensaje de error
+        setState(() {
+          errorMessage = 'Error al leer el QR: ${e.toString()}';
+        });
+
+        // Puedes decidir que hacer, como reintentar el escaneo o volver a intentar
+        // También puedes restablecer el estado después de un tiempo
+        Future.delayed(const Duration(seconds: 3), () {
+          setState(() {
+            errorMessage = null;
+          });
+        });
+      }
     });
   }
 }

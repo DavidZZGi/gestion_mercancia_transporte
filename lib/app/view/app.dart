@@ -17,20 +17,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
-      BlocProvider(create: (context) => sl<AuthenticationCubit>()),
-      BlocProvider(create: (context) => sl<LogoutCubit>()),
-      BlocProvider(create: (context) => sl<SignInBloc>()),
-      BlocProvider(
-        create: (context) => sl<SignUpBloc>(),
+      BlocProvider.value(value: sl<AuthenticationCubit>()),
+      BlocProvider.value(value: sl<LogoutCubit>()),
+      BlocProvider.value(value: sl<SignInBloc>()),
+      BlocProvider.value(
+        value: sl<SignUpBloc>(),
       ),
-      BlocProvider(
-        create: (context) => sl<ChangePasswordBloc>(),
+      BlocProvider.value(
+        value: sl<ChangePasswordBloc>(),
       ),
-      BlocProvider(
-        create: (context) => sl<DestinatarioBloc>(),
+      BlocProvider.value(
+        value: sl<DestinatarioBloc>(),
       ),
-      BlocProvider(
-        create: (context) => sl<TransportRequestBloc>(),
+      BlocProvider.value(
+        value: sl<TransportRequestBloc>(),
       ),
     ], child: const AppView());
   }

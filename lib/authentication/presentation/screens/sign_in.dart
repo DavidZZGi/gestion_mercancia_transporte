@@ -17,7 +17,9 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: BlocListener<SignInBloc, SignInState>(
@@ -30,7 +32,7 @@ class SignInScreen extends StatelessWidget {
                 context.router.navigate(const HomeRoute());
               },
               error: (message) => ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(message)),
+                const SnackBar(content: Text('email o contraseña incorrectos')),
               ),
             );
           },

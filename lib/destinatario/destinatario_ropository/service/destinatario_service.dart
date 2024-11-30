@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/destinatario/destinatario_ropository/models/destinatario.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -9,15 +10,17 @@ import '../interface/destinatario_interface.dart';
 class DestinatarioService implements DestinatarioInterface {
   final DatabaseHelper databaseHelper;
   final String destinatarioTable = 'recipients';
+  final _pref = AppPreferences();
   DestinatarioService({required this.databaseHelper});
   @override
   Future<void> createDestinatario(Destinatario destinatario) async {
     final db = await databaseHelper.database;
-    await db.insert(
+    final result = await db.insert(
       destinatarioTable,
       destinatario.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    print(result);
   }
 
   @override
@@ -31,25 +34,27 @@ class DestinatarioService implements DestinatarioInterface {
   }
 
   @override
-  Future<List<Destinatario>> getAllDestinatarios(int userId) async {
+  Future<List<Destinatario>> getAllDestinatarios() async {
     final db = await databaseHelper.database;
     final List<Map<String, dynamic>> maps = await db.query(
       destinatarioTable,
       where: 'userId = ?',
-      whereArgs: [userId],
+      whereArgs: [_pref.getUserId()],
     );
-    return maps.map((map) => Destinatario.fromJson(map)).toList();
+    final result = maps.map((map) => Destinatario.fromJson(map)).toList();
+    return result;
   }
 
   @override
   Future<void> updateDestinatario(Destinatario destinatario) async {
     final db = await databaseHelper.database;
-    await db.update(
+    final result = await db.update(
       destinatarioTable,
       destinatario.toJson(),
       where: 'id = ?',
       whereArgs: [destinatario.id],
     );
+    print(result);
   }
 
   @override

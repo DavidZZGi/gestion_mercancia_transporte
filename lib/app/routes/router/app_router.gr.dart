@@ -8,35 +8,37 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:flutter/material.dart' as _i9;
+import 'package:auto_route/auto_route.dart' as _i9;
+import 'package:flutter/material.dart' as _i10;
 import 'package:gestion_mercancia_transporte/app/view/homepage.dart' as _i1;
 import 'package:gestion_mercancia_transporte/app/view/qr_scanner.dart' as _i2;
-import 'package:gestion_mercancia_transporte/authentication/presentation/screens/sign_in.dart'
+import 'package:gestion_mercancia_transporte/authentication/presentation/screens/change_password.dart'
     as _i5;
-import 'package:gestion_mercancia_transporte/authentication/presentation/screens/sign_up.dart'
+import 'package:gestion_mercancia_transporte/authentication/presentation/screens/sign_in.dart'
     as _i6;
-import 'package:gestion_mercancia_transporte/authentication/presentation/screens/splash.screen.dart'
+import 'package:gestion_mercancia_transporte/authentication/presentation/screens/sign_up.dart'
     as _i7;
+import 'package:gestion_mercancia_transporte/authentication/presentation/screens/splash.screen.dart'
+    as _i8;
 import 'package:gestion_mercancia_transporte/destinatario/presentation/screens/destinatarios_screen.dart'
     as _i4;
 import 'package:gestion_mercancia_transporte/transport_request/presentation/screens/transport_request_screen.dart'
     as _i3;
 
-abstract class $AppRouter extends _i8.RootStackRouter {
+abstract class $AppRouter extends _i9.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i8.PageFactory> pagesMap = {
+  final Map<String, _i9.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.HomePage(),
       );
     },
     QrScannerRoute.name: (routeData) {
       final args = routeData.argsAs<QrScannerRouteArgs>();
-      return _i8.AutoRoutePage<dynamic>(
+      return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.QrScannerPage(
           key: args.key,
@@ -45,37 +47,45 @@ abstract class $AppRouter extends _i8.RootStackRouter {
       );
     },
     TransportRequestRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.TransportRequestPage(),
       );
     },
     DestinatariosRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.DestinatariosScreen(),
+      );
+    },
+    ChangePasswordRoute.name: (routeData) {
+      final args = routeData.argsAs<ChangePasswordRouteArgs>(
+          orElse: () => const ChangePasswordRouteArgs());
+      return _i9.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i5.ChangePasswordPage(key: args.key),
       );
     },
     SignInRoute.name: (routeData) {
       final args = routeData.argsAs<SignInRouteArgs>(
           orElse: () => const SignInRouteArgs());
-      return _i8.AutoRoutePage<dynamic>(
+      return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i5.SignInScreen(key: args.key),
+        child: _i6.SignInScreen(key: args.key),
       );
     },
     SignUpRoute.name: (routeData) {
       final args = routeData.argsAs<SignUpRouteArgs>(
           orElse: () => const SignUpRouteArgs());
-      return _i8.AutoRoutePage<dynamic>(
+      return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i6.SignUpScreen(key: args.key),
+        child: _i7.SignUpScreen(key: args.key),
       );
     },
     SplashRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.SplashPage(),
+        child: const _i8.SplashPage(),
       );
     },
   };
@@ -83,8 +93,8 @@ abstract class $AppRouter extends _i8.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i8.PageRouteInfo<void> {
-  const HomeRoute({List<_i8.PageRouteInfo>? children})
+class HomeRoute extends _i9.PageRouteInfo<void> {
+  const HomeRoute({List<_i9.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -92,16 +102,16 @@ class HomeRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.QrScannerPage]
-class QrScannerRoute extends _i8.PageRouteInfo<QrScannerRouteArgs> {
+class QrScannerRoute extends _i9.PageRouteInfo<QrScannerRouteArgs> {
   QrScannerRoute({
-    _i9.Key? key,
+    _i10.Key? key,
     required dynamic Function(String) onScanComplete,
-    List<_i8.PageRouteInfo>? children,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           QrScannerRoute.name,
           args: QrScannerRouteArgs(
@@ -113,8 +123,8 @@ class QrScannerRoute extends _i8.PageRouteInfo<QrScannerRouteArgs> {
 
   static const String name = 'QrScannerRoute';
 
-  static const _i8.PageInfo<QrScannerRouteArgs> page =
-      _i8.PageInfo<QrScannerRouteArgs>(name);
+  static const _i9.PageInfo<QrScannerRouteArgs> page =
+      _i9.PageInfo<QrScannerRouteArgs>(name);
 }
 
 class QrScannerRouteArgs {
@@ -123,7 +133,7 @@ class QrScannerRouteArgs {
     required this.onScanComplete,
   });
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
   final dynamic Function(String) onScanComplete;
 
@@ -135,8 +145,8 @@ class QrScannerRouteArgs {
 
 /// generated route for
 /// [_i3.TransportRequestPage]
-class TransportRequestRoute extends _i8.PageRouteInfo<void> {
-  const TransportRequestRoute({List<_i8.PageRouteInfo>? children})
+class TransportRequestRoute extends _i9.PageRouteInfo<void> {
+  const TransportRequestRoute({List<_i9.PageRouteInfo>? children})
       : super(
           TransportRequestRoute.name,
           initialChildren: children,
@@ -144,13 +154,13 @@ class TransportRequestRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'TransportRequestRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i4.DestinatariosScreen]
-class DestinatariosRoute extends _i8.PageRouteInfo<void> {
-  const DestinatariosRoute({List<_i8.PageRouteInfo>? children})
+class DestinatariosRoute extends _i9.PageRouteInfo<void> {
+  const DestinatariosRoute({List<_i9.PageRouteInfo>? children})
       : super(
           DestinatariosRoute.name,
           initialChildren: children,
@@ -158,15 +168,44 @@ class DestinatariosRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'DestinatariosRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.SignInScreen]
-class SignInRoute extends _i8.PageRouteInfo<SignInRouteArgs> {
+/// [_i5.ChangePasswordPage]
+class ChangePasswordRoute extends _i9.PageRouteInfo<ChangePasswordRouteArgs> {
+  ChangePasswordRoute({
+    _i10.Key? key,
+    List<_i9.PageRouteInfo>? children,
+  }) : super(
+          ChangePasswordRoute.name,
+          args: ChangePasswordRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'ChangePasswordRoute';
+
+  static const _i9.PageInfo<ChangePasswordRouteArgs> page =
+      _i9.PageInfo<ChangePasswordRouteArgs>(name);
+}
+
+class ChangePasswordRouteArgs {
+  const ChangePasswordRouteArgs({this.key});
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'ChangePasswordRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i6.SignInScreen]
+class SignInRoute extends _i9.PageRouteInfo<SignInRouteArgs> {
   SignInRoute({
-    _i9.Key? key,
-    List<_i8.PageRouteInfo>? children,
+    _i10.Key? key,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           SignInRoute.name,
           args: SignInRouteArgs(key: key),
@@ -175,14 +214,14 @@ class SignInRoute extends _i8.PageRouteInfo<SignInRouteArgs> {
 
   static const String name = 'SignInRoute';
 
-  static const _i8.PageInfo<SignInRouteArgs> page =
-      _i8.PageInfo<SignInRouteArgs>(name);
+  static const _i9.PageInfo<SignInRouteArgs> page =
+      _i9.PageInfo<SignInRouteArgs>(name);
 }
 
 class SignInRouteArgs {
   const SignInRouteArgs({this.key});
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -191,11 +230,11 @@ class SignInRouteArgs {
 }
 
 /// generated route for
-/// [_i6.SignUpScreen]
-class SignUpRoute extends _i8.PageRouteInfo<SignUpRouteArgs> {
+/// [_i7.SignUpScreen]
+class SignUpRoute extends _i9.PageRouteInfo<SignUpRouteArgs> {
   SignUpRoute({
-    _i9.Key? key,
-    List<_i8.PageRouteInfo>? children,
+    _i10.Key? key,
+    List<_i9.PageRouteInfo>? children,
   }) : super(
           SignUpRoute.name,
           args: SignUpRouteArgs(key: key),
@@ -204,14 +243,14 @@ class SignUpRoute extends _i8.PageRouteInfo<SignUpRouteArgs> {
 
   static const String name = 'SignUpRoute';
 
-  static const _i8.PageInfo<SignUpRouteArgs> page =
-      _i8.PageInfo<SignUpRouteArgs>(name);
+  static const _i9.PageInfo<SignUpRouteArgs> page =
+      _i9.PageInfo<SignUpRouteArgs>(name);
 }
 
 class SignUpRouteArgs {
   const SignUpRouteArgs({this.key});
 
-  final _i9.Key? key;
+  final _i10.Key? key;
 
   @override
   String toString() {
@@ -220,9 +259,9 @@ class SignUpRouteArgs {
 }
 
 /// generated route for
-/// [_i7.SplashPage]
-class SplashRoute extends _i8.PageRouteInfo<void> {
-  const SplashRoute({List<_i8.PageRouteInfo>? children})
+/// [_i8.SplashPage]
+class SplashRoute extends _i9.PageRouteInfo<void> {
+  const SplashRoute({List<_i9.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -230,5 +269,5 @@ class SplashRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }
