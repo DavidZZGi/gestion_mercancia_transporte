@@ -8,6 +8,7 @@ import 'package:gestion_mercancia_transporte/transport_request/domain/delete_tra
 import 'package:gestion_mercancia_transporte/transport_request/domain/get_transport_request_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/update_request_status_use_case.dart';
 
+import '../../domain/create_transport_request_from_qr_use_case.dart';
 import '../../transport_request_repository/models/transport_request.dart';
 
 part 'transport_request_event.dart';
@@ -16,6 +17,7 @@ part 'transport_request_bloc.freezed.dart';
 
 class TransportRequestBloc
     extends Bloc<TransportRequestEvent, TransportRequestState> {
+  final CreateTransportRequestFromQrUseCase createTransportRequestFromQrUseCase;
   final CreateTransportRequestUseCase createTransportRequestUseCase;
   final DeleteTransportRequestUseCase deleteTransportRequestUseCase;
   final UpdateRequestStatusTransportRequestUseCase
@@ -25,12 +27,14 @@ class TransportRequestBloc
       {required this.createTransportRequestUseCase,
       required this.deleteTransportRequestUseCase,
       required this.getTransportRequestUseCase,
+      required this.createTransportRequestFromQrUseCase,
       required this.updateRequestStatusTransportRequestUseCase})
       : super(const _Initial()) {
     on<_AddTransportRequest>(_onCreateTransporRequest);
     on<_GetAllTransportRequest>(_onGetransporRequest);
     on<_UpdateTransportRequest>(_onUpdateTransporRequest);
     on<_DeleteTransportRequest>(_onDeleteTransporRequest);
+    on<_ScanQr>(_onScanQr);
   }
 
   FutureOr<void> _onCreateTransporRequest(
@@ -71,6 +75,17 @@ class TransportRequestBloc
       add(const TransportRequestEvent.getAll());
     } catch (e) {
       emit(TransportRequestState.error(e.toString()));
+    }
+  }
+
+  Future<void> _onScanQr(
+      _ScanQr event, Emitter<TransportRequestState> emit) async {
+    emit(const TransportRequestState.loading());
+    try {
+      await createTransportRequestFromQrUseCase.call(event.qrContent);
+      add(const TransportRequestEvent.getAll());
+    } catch (e) {
+      emit(_Error(e.toString()));
     }
   }
 }

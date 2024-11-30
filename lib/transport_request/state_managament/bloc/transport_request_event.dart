@@ -9,4 +9,5 @@ class TransportRequestEvent with _$TransportRequestEvent {
       _UpdateTransportRequest;
   const factory TransportRequestEvent.delete(int id) = _DeleteTransportRequest;
   const factory TransportRequestEvent.getAll() = _GetAllTransportRequest;
+  const factory TransportRequestEvent.scanQr(String qrContent) = _ScanQr;
 }

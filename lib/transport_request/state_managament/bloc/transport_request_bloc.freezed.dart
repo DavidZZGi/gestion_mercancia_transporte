@@ -23,6 +23,7 @@ mixin _$TransportRequestEvent {
     required TResult Function(TransportRequest request) update,
     required TResult Function(int id) delete,
     required TResult Function() getAll,
+    required TResult Function(String qrContent) scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$TransportRequestEvent {
     TResult? Function(TransportRequest request)? update,
     TResult? Function(int id)? delete,
     TResult? Function()? getAll,
+    TResult? Function(String qrContent)? scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$TransportRequestEvent {
     TResult Function(TransportRequest request)? update,
     TResult Function(int id)? delete,
     TResult Function()? getAll,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$TransportRequestEvent {
     required TResult Function(_UpdateTransportRequest value) update,
     required TResult Function(_DeleteTransportRequest value) delete,
     required TResult Function(_GetAllTransportRequest value) getAll,
+    required TResult Function(_ScanQr value) scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$TransportRequestEvent {
     TResult? Function(_UpdateTransportRequest value)? update,
     TResult? Function(_DeleteTransportRequest value)? delete,
     TResult? Function(_GetAllTransportRequest value)? getAll,
+    TResult? Function(_ScanQr value)? scanQr,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$TransportRequestEvent {
     TResult Function(_UpdateTransportRequest value)? update,
     TResult Function(_DeleteTransportRequest value)? delete,
     TResult Function(_GetAllTransportRequest value)? getAll,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +142,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(TransportRequest request) update,
     required TResult Function(int id) delete,
     required TResult Function() getAll,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return started();
   }
@@ -148,6 +155,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(TransportRequest request)? update,
     TResult? Function(int id)? delete,
     TResult? Function()? getAll,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return started?.call();
   }
@@ -160,6 +168,7 @@ class _$StartedImpl implements _Started {
     TResult Function(TransportRequest request)? update,
     TResult Function(int id)? delete,
     TResult Function()? getAll,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -176,6 +185,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_UpdateTransportRequest value) update,
     required TResult Function(_DeleteTransportRequest value) delete,
     required TResult Function(_GetAllTransportRequest value) getAll,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return started(this);
   }
@@ -188,6 +198,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_UpdateTransportRequest value)? update,
     TResult? Function(_DeleteTransportRequest value)? delete,
     TResult? Function(_GetAllTransportRequest value)? getAll,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return started?.call(this);
   }
@@ -200,6 +211,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_UpdateTransportRequest value)? update,
     TResult Function(_DeleteTransportRequest value)? delete,
     TResult Function(_GetAllTransportRequest value)? getAll,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -293,6 +305,7 @@ class _$AddTransportRequestImpl implements _AddTransportRequest {
     required TResult Function(TransportRequest request) update,
     required TResult Function(int id) delete,
     required TResult Function() getAll,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return add(request);
   }
@@ -305,6 +318,7 @@ class _$AddTransportRequestImpl implements _AddTransportRequest {
     TResult? Function(TransportRequest request)? update,
     TResult? Function(int id)? delete,
     TResult? Function()? getAll,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return add?.call(request);
   }
@@ -317,6 +331,7 @@ class _$AddTransportRequestImpl implements _AddTransportRequest {
     TResult Function(TransportRequest request)? update,
     TResult Function(int id)? delete,
     TResult Function()? getAll,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -333,6 +348,7 @@ class _$AddTransportRequestImpl implements _AddTransportRequest {
     required TResult Function(_UpdateTransportRequest value) update,
     required TResult Function(_DeleteTransportRequest value) delete,
     required TResult Function(_GetAllTransportRequest value) getAll,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return add(this);
   }
@@ -345,6 +361,7 @@ class _$AddTransportRequestImpl implements _AddTransportRequest {
     TResult? Function(_UpdateTransportRequest value)? update,
     TResult? Function(_DeleteTransportRequest value)? delete,
     TResult? Function(_GetAllTransportRequest value)? getAll,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return add?.call(this);
   }
@@ -357,6 +374,7 @@ class _$AddTransportRequestImpl implements _AddTransportRequest {
     TResult Function(_UpdateTransportRequest value)? update,
     TResult Function(_DeleteTransportRequest value)? delete,
     TResult Function(_GetAllTransportRequest value)? getAll,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (add != null) {
@@ -459,6 +477,7 @@ class _$UpdateTransportRequestImpl implements _UpdateTransportRequest {
     required TResult Function(TransportRequest request) update,
     required TResult Function(int id) delete,
     required TResult Function() getAll,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return update(request);
   }
@@ -471,6 +490,7 @@ class _$UpdateTransportRequestImpl implements _UpdateTransportRequest {
     TResult? Function(TransportRequest request)? update,
     TResult? Function(int id)? delete,
     TResult? Function()? getAll,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return update?.call(request);
   }
@@ -483,6 +503,7 @@ class _$UpdateTransportRequestImpl implements _UpdateTransportRequest {
     TResult Function(TransportRequest request)? update,
     TResult Function(int id)? delete,
     TResult Function()? getAll,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -499,6 +520,7 @@ class _$UpdateTransportRequestImpl implements _UpdateTransportRequest {
     required TResult Function(_UpdateTransportRequest value) update,
     required TResult Function(_DeleteTransportRequest value) delete,
     required TResult Function(_GetAllTransportRequest value) getAll,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return update(this);
   }
@@ -511,6 +533,7 @@ class _$UpdateTransportRequestImpl implements _UpdateTransportRequest {
     TResult? Function(_UpdateTransportRequest value)? update,
     TResult? Function(_DeleteTransportRequest value)? delete,
     TResult? Function(_GetAllTransportRequest value)? getAll,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return update?.call(this);
   }
@@ -523,6 +546,7 @@ class _$UpdateTransportRequestImpl implements _UpdateTransportRequest {
     TResult Function(_UpdateTransportRequest value)? update,
     TResult Function(_DeleteTransportRequest value)? delete,
     TResult Function(_GetAllTransportRequest value)? getAll,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -615,6 +639,7 @@ class _$DeleteTransportRequestImpl implements _DeleteTransportRequest {
     required TResult Function(TransportRequest request) update,
     required TResult Function(int id) delete,
     required TResult Function() getAll,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return delete(id);
   }
@@ -627,6 +652,7 @@ class _$DeleteTransportRequestImpl implements _DeleteTransportRequest {
     TResult? Function(TransportRequest request)? update,
     TResult? Function(int id)? delete,
     TResult? Function()? getAll,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return delete?.call(id);
   }
@@ -639,6 +665,7 @@ class _$DeleteTransportRequestImpl implements _DeleteTransportRequest {
     TResult Function(TransportRequest request)? update,
     TResult Function(int id)? delete,
     TResult Function()? getAll,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -655,6 +682,7 @@ class _$DeleteTransportRequestImpl implements _DeleteTransportRequest {
     required TResult Function(_UpdateTransportRequest value) update,
     required TResult Function(_DeleteTransportRequest value) delete,
     required TResult Function(_GetAllTransportRequest value) getAll,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return delete(this);
   }
@@ -667,6 +695,7 @@ class _$DeleteTransportRequestImpl implements _DeleteTransportRequest {
     TResult? Function(_UpdateTransportRequest value)? update,
     TResult? Function(_DeleteTransportRequest value)? delete,
     TResult? Function(_GetAllTransportRequest value)? getAll,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return delete?.call(this);
   }
@@ -679,6 +708,7 @@ class _$DeleteTransportRequestImpl implements _DeleteTransportRequest {
     TResult Function(_UpdateTransportRequest value)? update,
     TResult Function(_DeleteTransportRequest value)? delete,
     TResult Function(_GetAllTransportRequest value)? getAll,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (delete != null) {
@@ -745,6 +775,7 @@ class _$GetAllTransportRequestImpl implements _GetAllTransportRequest {
     required TResult Function(TransportRequest request) update,
     required TResult Function(int id) delete,
     required TResult Function() getAll,
+    required TResult Function(String qrContent) scanQr,
   }) {
     return getAll();
   }
@@ -757,6 +788,7 @@ class _$GetAllTransportRequestImpl implements _GetAllTransportRequest {
     TResult? Function(TransportRequest request)? update,
     TResult? Function(int id)? delete,
     TResult? Function()? getAll,
+    TResult? Function(String qrContent)? scanQr,
   }) {
     return getAll?.call();
   }
@@ -769,6 +801,7 @@ class _$GetAllTransportRequestImpl implements _GetAllTransportRequest {
     TResult Function(TransportRequest request)? update,
     TResult Function(int id)? delete,
     TResult Function()? getAll,
+    TResult Function(String qrContent)? scanQr,
     required TResult orElse(),
   }) {
     if (getAll != null) {
@@ -785,6 +818,7 @@ class _$GetAllTransportRequestImpl implements _GetAllTransportRequest {
     required TResult Function(_UpdateTransportRequest value) update,
     required TResult Function(_DeleteTransportRequest value) delete,
     required TResult Function(_GetAllTransportRequest value) getAll,
+    required TResult Function(_ScanQr value) scanQr,
   }) {
     return getAll(this);
   }
@@ -797,6 +831,7 @@ class _$GetAllTransportRequestImpl implements _GetAllTransportRequest {
     TResult? Function(_UpdateTransportRequest value)? update,
     TResult? Function(_DeleteTransportRequest value)? delete,
     TResult? Function(_GetAllTransportRequest value)? getAll,
+    TResult? Function(_ScanQr value)? scanQr,
   }) {
     return getAll?.call(this);
   }
@@ -809,6 +844,7 @@ class _$GetAllTransportRequestImpl implements _GetAllTransportRequest {
     TResult Function(_UpdateTransportRequest value)? update,
     TResult Function(_DeleteTransportRequest value)? delete,
     TResult Function(_GetAllTransportRequest value)? getAll,
+    TResult Function(_ScanQr value)? scanQr,
     required TResult orElse(),
   }) {
     if (getAll != null) {
@@ -820,6 +856,164 @@ class _$GetAllTransportRequestImpl implements _GetAllTransportRequest {
 
 abstract class _GetAllTransportRequest implements TransportRequestEvent {
   const factory _GetAllTransportRequest() = _$GetAllTransportRequestImpl;
+}
+
+/// @nodoc
+abstract class _$$ScanQrImplCopyWith<$Res> {
+  factory _$$ScanQrImplCopyWith(
+          _$ScanQrImpl value, $Res Function(_$ScanQrImpl) then) =
+      __$$ScanQrImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String qrContent});
+}
+
+/// @nodoc
+class __$$ScanQrImplCopyWithImpl<$Res>
+    extends _$TransportRequestEventCopyWithImpl<$Res, _$ScanQrImpl>
+    implements _$$ScanQrImplCopyWith<$Res> {
+  __$$ScanQrImplCopyWithImpl(
+      _$ScanQrImpl _value, $Res Function(_$ScanQrImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? qrContent = null,
+  }) {
+    return _then(_$ScanQrImpl(
+      null == qrContent
+          ? _value.qrContent
+          : qrContent // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ScanQrImpl implements _ScanQr {
+  const _$ScanQrImpl(this.qrContent);
+
+  @override
+  final String qrContent;
+
+  @override
+  String toString() {
+    return 'TransportRequestEvent.scanQr(qrContent: $qrContent)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScanQrImpl &&
+            (identical(other.qrContent, qrContent) ||
+                other.qrContent == qrContent));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, qrContent);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScanQrImplCopyWith<_$ScanQrImpl> get copyWith =>
+      __$$ScanQrImplCopyWithImpl<_$ScanQrImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(TransportRequest request) add,
+    required TResult Function(TransportRequest request) update,
+    required TResult Function(int id) delete,
+    required TResult Function() getAll,
+    required TResult Function(String qrContent) scanQr,
+  }) {
+    return scanQr(qrContent);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(TransportRequest request)? add,
+    TResult? Function(TransportRequest request)? update,
+    TResult? Function(int id)? delete,
+    TResult? Function()? getAll,
+    TResult? Function(String qrContent)? scanQr,
+  }) {
+    return scanQr?.call(qrContent);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(TransportRequest request)? add,
+    TResult Function(TransportRequest request)? update,
+    TResult Function(int id)? delete,
+    TResult Function()? getAll,
+    TResult Function(String qrContent)? scanQr,
+    required TResult orElse(),
+  }) {
+    if (scanQr != null) {
+      return scanQr(qrContent);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_AddTransportRequest value) add,
+    required TResult Function(_UpdateTransportRequest value) update,
+    required TResult Function(_DeleteTransportRequest value) delete,
+    required TResult Function(_GetAllTransportRequest value) getAll,
+    required TResult Function(_ScanQr value) scanQr,
+  }) {
+    return scanQr(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_AddTransportRequest value)? add,
+    TResult? Function(_UpdateTransportRequest value)? update,
+    TResult? Function(_DeleteTransportRequest value)? delete,
+    TResult? Function(_GetAllTransportRequest value)? getAll,
+    TResult? Function(_ScanQr value)? scanQr,
+  }) {
+    return scanQr?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_AddTransportRequest value)? add,
+    TResult Function(_UpdateTransportRequest value)? update,
+    TResult Function(_DeleteTransportRequest value)? delete,
+    TResult Function(_GetAllTransportRequest value)? getAll,
+    TResult Function(_ScanQr value)? scanQr,
+    required TResult orElse(),
+  }) {
+    if (scanQr != null) {
+      return scanQr(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ScanQr implements TransportRequestEvent {
+  const factory _ScanQr(final String qrContent) = _$ScanQrImpl;
+
+  String get qrContent;
+  @JsonKey(ignore: true)
+  _$$ScanQrImplCopyWith<_$ScanQrImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

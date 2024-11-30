@@ -5,7 +5,7 @@ import 'package:gestion_mercancia_transporte/app/routes/router/app_router.gr.dar
 import 'package:gestion_mercancia_transporte/authentication/authentication_repository/models/user.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_up_bloc/bloc/sign_up_bloc.dart';
 
-import '../../../app/global/app_texts/global_text.dart';
+import '../../../app/global/constants/constants.dart';
 import '../../../app/utils/style/style.dart';
 import 'auth_widgets.dart';
 

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gestion_mercancia_transporte/app/global/app_texts/global_text.dart';
+import 'package:gestion_mercancia_transporte/app/global/constants/constants.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_in_bloc/bloc/sign_in_bloc.dart';
 
 import '../../../app/routes/router/app_router.gr.dart';

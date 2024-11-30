@@ -52,7 +52,11 @@ class DestinatariosScreen extends StatelessWidget {
                 return DestinatarioList(destinatarios: recipients);
               }
             },
-            error: (message) => Center(child: Text('Error: $message')),
+            error: (message) {
+              return Center(
+                child: Text(message),
+              );
+            },
           );
         },
       ),

@@ -5,4 +5,5 @@ abstract class TransportRequestInterface {
   Future<void> updateRequestStatus(TransportRequest transportRequest);
   Future<List<TransportRequest>> getTransportRequests();
   Future<void> createTransportRequest(TransportRequest request);
+  Future<void> createTransportRequestFromQr(String qrContent);
 }

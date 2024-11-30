@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:gestion_mercancia_transporte/app/data/database_helper.dart';
 import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/interface/transport_request_interface.dart';
@@ -53,5 +55,38 @@ class TransportRequestService implements TransportRequestInterface {
       where: 'id = ?',
       whereArgs: [transportRequest.id],
     );
+  }
+
+  @override
+  Future<void> createTransportRequestFromQr(String qrContent) async {
+    final db = await databaseHelper.database;
+    try {
+      final data = json.decode(qrContent) as Map<String, dynamic>;
+      final result = TransportRequest.fromJson(data);
+      await db.insert(tableName, result.toJson());
+    } catch (e) {
+      // Si no es un JSON válido, intentamos tratarlo como texto plano
+      RegExp regExp = RegExp(
+          r"TransportRequest\{id=(\d+), userId=(\d+), recipientId=(\d+), status=(\d+), createdAt='([^']+)', notes='([^']*)'\}");
+      final match = regExp.firstMatch(qrContent);
+      if (match != null) {
+        // Extraemos los valores y creamos el objeto TransportRequest
+        final transportRequest = TransportRequest(
+          id: int.tryParse(match.group(1)!),
+          userId: int.tryParse(match.group(2)!)!,
+          recipientId: int.tryParse(match.group(3)!)!,
+          status: RequestStatus.values[int.tryParse(
+              match.group(4)!)!], // Convertimos el int a RequestStatus
+          createdAt: DateTime.parse(match.group(5)!),
+          notes: match.group(6),
+        );
+
+        // Insertar en base de datos
+        await db.insert(tableName, transportRequest.toJson(),
+            conflictAlgorithm: ConflictAlgorithm.replace);
+      } else {
+        throw const FormatException('El formato de entrada no es válido.');
+      }
+    }
   }
 }

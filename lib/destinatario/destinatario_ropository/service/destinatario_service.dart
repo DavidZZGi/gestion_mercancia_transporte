@@ -65,7 +65,24 @@ class DestinatarioService implements DestinatarioInterface {
       final recipient = Destinatario.fromJson(data);
       await db.insert(destinatarioTable, recipient.toJson());
     } catch (e) {
-      throw Exception("QR inválido o datos no válidos.");
+      // Si no es un JSON válido, intentamos tratarlo como texto plano
+      RegExp regExp = RegExp(
+          r"Destinatario\{id=(\d+), userId=(\d+), name='(.+)', address='(.+)', phone='(.+)'\}");
+      final match = regExp.firstMatch(qrContent);
+      if (match != null) {
+        // Si el texto tiene el formato esperado, extraemos los valores
+        final destinatario = Destinatario(
+          id: int.tryParse(match.group(1)!),
+          userId: int.tryParse(match.group(2)!)!,
+          name: match.group(3) ?? '',
+          address: match.group(4) ?? '',
+          phone: match.group(5) ?? '',
+        );
+        await db.insert(destinatarioTable, destinatario.toJson(),
+            conflictAlgorithm: ConflictAlgorithm.replace);
+      } else {
+        throw FormatException('El formato de entrada no es válido.');
+      }
     }
   }
 }

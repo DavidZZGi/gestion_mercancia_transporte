@@ -13,4 +13,6 @@ class TransportRequestRepository {
       await transportRequestService.getTransportRequests();
   Future<void> createTransportRequest(TransportRequest request) async =>
       await transportRequestService.createTransportRequest(request);
+  Future<void> createTransportRequestFromQr(String codeQr) async =>
+      await transportRequestService.createTransportRequestFromQr(codeQr);
 }

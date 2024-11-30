@@ -18,6 +18,7 @@ import 'package:gestion_mercancia_transporte/destinatario/domain/delete_destinat
 import 'package:gestion_mercancia_transporte/destinatario/domain/get_destinatarios_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/update_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
+import 'package:gestion_mercancia_transporte/transport_request/domain/create_transport_request_from_qr_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/create_transport_request_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/delete_transport_request_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/get_transport_request_use_case.dart';
@@ -126,6 +127,10 @@ FutureOr<void> initCore(GetIt sl) async {
       () => CreateTransportRequestUseCase(
           transportRequestRepository: sl<TransportRequestRepository>()),
     )
+    ..registerLazySingleton<CreateTransportRequestFromQrUseCase>(
+      () => CreateTransportRequestFromQrUseCase(
+          transportRequestRepository: sl<TransportRequestRepository>()),
+    )
     ..registerLazySingleton<DeleteTransportRequestUseCase>(
       () => DeleteTransportRequestUseCase(
           transportRequestRepository: sl<TransportRequestRepository>()),
@@ -142,6 +147,8 @@ FutureOr<void> initCore(GetIt sl) async {
         createTransportRequestUseCase: sl<CreateTransportRequestUseCase>(),
         deleteTransportRequestUseCase: sl<DeleteTransportRequestUseCase>(),
         getTransportRequestUseCase: sl<GetTransportRequestUseCase>(),
+        createTransportRequestFromQrUseCase:
+            sl<CreateTransportRequestFromQrUseCase>(),
         updateRequestStatusTransportRequestUseCase:
             sl<UpdateRequestStatusTransportRequestUseCase>()));
 }

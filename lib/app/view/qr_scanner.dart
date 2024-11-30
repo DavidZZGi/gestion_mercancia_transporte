@@ -59,7 +59,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
 
         // Aquí asumes que el QR tiene la información de un destinatario
         // La validación puede ser más específica dependiendo del formato del QR
-        if (qrContent.isEmpty || !qrContent.contains(':')) {
+        if (qrContent.isEmpty) {
           throw FormatException('Contenido de QR inválido');
         }
 
