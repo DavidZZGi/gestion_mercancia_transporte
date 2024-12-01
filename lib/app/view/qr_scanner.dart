@@ -35,7 +35,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 errorMessage!,
-                style: TextStyle(color: Colors.red, fontSize: 16),
+                style: const TextStyle(color: Colors.red, fontSize: 16),
               ),
             ),
           Expanded(
@@ -60,7 +60,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
         // Aquí asumes que el QR tiene la información de un destinatario
         // La validación puede ser más específica dependiendo del formato del QR
         if (qrContent.isEmpty) {
-          throw FormatException('Contenido de QR inválido');
+          throw const FormatException('Contenido de QR inválido');
         }
 
         // Llamar al callback con el contenido del QR

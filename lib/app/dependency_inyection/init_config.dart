@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
+import 'package:gestion_mercancia_transporte/app/global/constants/constants.dart';
 import 'package:gestion_mercancia_transporte/authentication/authentication_repository/authentication_repository.dart';
 import 'package:gestion_mercancia_transporte/authentication/authentication_repository/service/auth_service.dart';
 import 'package:gestion_mercancia_transporte/authentication/domain/change_password_use_case.dart';
@@ -18,6 +20,10 @@ import 'package:gestion_mercancia_transporte/destinatario/domain/delete_destinat
 import 'package:gestion_mercancia_transporte/destinatario/domain/get_destinatarios_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/domain/update_destinatario_use_case.dart';
 import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
+import 'package:gestion_mercancia_transporte/synchronization/domain/synchronization_use_case.dart';
+import 'package:gestion_mercancia_transporte/synchronization/state_management/synchronization_cubit/cubit/synchronization_cubit.dart';
+import 'package:gestion_mercancia_transporte/synchronization/synchronization_repository/service/synchronization_service.dart';
+import 'package:gestion_mercancia_transporte/synchronization/synchronization_repository/synchronization_repository.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/create_transport_request_from_qr_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/create_transport_request_use_case.dart';
 import 'package:gestion_mercancia_transporte/transport_request/domain/delete_transport_request_use_case.dart';
@@ -38,6 +44,9 @@ FutureOr<void> initCore(GetIt sl) async {
   await DatabaseHelper.instance.initDatabase();
   final sqliteInstance = DatabaseHelper.instance;
   sl
+    ..registerLazySingleton<Dio>(
+      () => Dio(BaseOptions(baseUrl: baseUrl)),
+    )
     ..registerLazySingleton<AuthService>(
       () => AuthService(databaseHelper: sqliteInstance),
     )
@@ -82,7 +91,7 @@ FutureOr<void> initCore(GetIt sl) async {
       () => LogoutCubit(logoutUseCase: sl<LogoutUseCase>()),
     )
     ..registerLazySingleton<DestinatarioService>(
-      () => DestinatarioService(databaseHelper: sqliteInstance),
+      () => DestinatarioService(databaseHelper: sqliteInstance, dio: sl<Dio>()),
     )
     ..registerLazySingleton<DestinatarioRepository>(
       () => DestinatarioRepository(
@@ -117,7 +126,8 @@ FutureOr<void> initCore(GetIt sl) async {
           updateDestinatarioUseCase: sl<UpdateDestinatarioUseCase>()),
     )
     ..registerLazySingleton<TransportRequestService>(
-      () => TransportRequestService(databaseHelper: sqliteInstance),
+      () => TransportRequestService(
+          databaseHelper: sqliteInstance, dio: sl<Dio>()),
     )
     ..registerLazySingleton<TransportRequestRepository>(
       () => TransportRequestRepository(
@@ -150,5 +160,25 @@ FutureOr<void> initCore(GetIt sl) async {
         createTransportRequestFromQrUseCase:
             sl<CreateTransportRequestFromQrUseCase>(),
         updateRequestStatusTransportRequestUseCase:
-            sl<UpdateRequestStatusTransportRequestUseCase>()));
+            sl<UpdateRequestStatusTransportRequestUseCase>()))
+    ..registerLazySingleton<SynchronizationService>(
+      () => SynchronizationService(
+          destinatarioService: sl<DestinatarioService>(),
+          transportRequestService: sl<TransportRequestService>()),
+    )
+    ..registerLazySingleton<SynchronizationRepository>(
+      () => SynchronizationRepository(
+        synchronizationService: sl<SynchronizationService>(),
+      ),
+    )
+    ..registerLazySingleton<SynchronizationUseCase>(
+      () => SynchronizationUseCase(
+        synchronizationRepository: sl<SynchronizationRepository>(),
+      ),
+    )
+    ..registerLazySingleton<SynchronizationCubit>(
+      () => SynchronizationCubit(
+        synchronizationUseCase: sl<SynchronizationUseCase>(),
+      ),
+    );
 }

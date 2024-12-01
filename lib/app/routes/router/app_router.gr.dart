@@ -31,9 +31,11 @@ abstract class $AppRouter extends _i9.RootStackRouter {
   @override
   final Map<String, _i9.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.HomePage(),
+        child: _i1.HomePage(key: args.key),
       );
     },
     QrScannerRoute.name: (routeData) {
@@ -93,16 +95,31 @@ abstract class $AppRouter extends _i9.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i9.PageRouteInfo<void> {
-  const HomeRoute({List<_i9.PageRouteInfo>? children})
-      : super(
+class HomeRoute extends _i9.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    _i10.Key? key,
+    List<_i9.PageRouteInfo>? children,
+  }) : super(
           HomeRoute.name,
+          args: HomeRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
 
-  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
+  static const _i9.PageInfo<HomeRouteArgs> page =
+      _i9.PageInfo<HomeRouteArgs>(name);
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

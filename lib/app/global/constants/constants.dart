@@ -9,4 +9,4 @@ const String nameHintText = 'Díganos su nombre';
 const String account = 'Ya tiene una cuenta ?';
 const String noaccount = 'No tiene una cuenta?';
 const String repaetpasswordText = 'Repita su  contraseña';
-const String baseUrl = 'http://localhost:3000';
+const String baseUrl = 'http://localhost:3000/api';

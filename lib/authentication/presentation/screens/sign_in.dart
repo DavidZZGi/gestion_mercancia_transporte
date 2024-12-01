@@ -29,7 +29,7 @@ class SignInScreen extends StatelessWidget {
               loading: () => const CircularProgressIndicator.adaptive(),
               success: (user) {
                 print(user);
-                context.router.navigate(const HomeRoute());
+                context.router.navigate(HomeRoute());
               },
               error: (message) => ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('email o contraseña incorrectos')),

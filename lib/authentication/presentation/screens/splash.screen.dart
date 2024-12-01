@@ -17,7 +17,7 @@ class SplashPage extends StatelessWidget {
       final isAuthenticated = authCubit.isAuthenticated();
       if (isAuthenticated) {
         // Usuario autenticado, ir a la pantalla principal
-        context.router.replace(const HomeRoute());
+        context.router.replace(HomeRoute());
       } else {
         // Usuario no autenticado, ir al login
         context.router.replace(SignInRoute());

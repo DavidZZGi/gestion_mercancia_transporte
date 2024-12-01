@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:gestion_mercancia_transporte/app/data/database_helper.dart';
 import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/transport_request/transport_request_repository/interface/transport_request_interface.dart';
@@ -10,8 +11,39 @@ class TransportRequestService implements TransportRequestInterface {
   final DatabaseHelper databaseHelper;
   final String tableName = 'transport_requests';
   final _pref = AppPreferences();
+  final Dio dio;
 
-  TransportRequestService({required this.databaseHelper});
+  TransportRequestService({required this.databaseHelper, required this.dio});
+
+  Future<void> uploadTransportRequestToServer() async {
+    final transportRequests = await getTransportRequests(); // Desde SQLite
+    if (transportRequests.isNotEmpty) {
+      try {
+        for (var element in transportRequests) {
+          try {
+            final response = await dio.post(
+              '/transport-requests',
+              data: element.toJson(),
+            );
+            if (response.statusCode == 200) {
+              print('Destinatario subido con éxito: ${element.toString()}');
+            } else {
+              throw Exception(
+                'Error al subir destinatario ${element.toString()}: Código ${response.statusCode} - ${response.statusMessage}',
+              );
+            }
+          } catch (dioError) {
+            // Capturar errores específicos de Dio
+            print(
+              'Error de red al subir destinatario ${element.toString()}: $dioError',
+            );
+          }
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+  }
 
   @override
   Future<void> createTransportRequest(TransportRequest request) async {

@@ -37,7 +37,7 @@ class ChangePasswordPage extends StatelessWidget {
                 backgroundColor: Colors.green,
               ),
             );
-            context.router.replace(const HomeRoute());
+            context.router.replace(HomeRoute());
           },
           error: (message) {
             ScaffoldMessenger.of(context).showSnackBar(

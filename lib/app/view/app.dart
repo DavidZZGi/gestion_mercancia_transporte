@@ -5,6 +5,7 @@ import 'package:gestion_mercancia_transporte/authentication/state_managament/cha
 import 'package:gestion_mercancia_transporte/authentication/state_managament/logout_cubit/cubit/logout_cubit.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_in_bloc/bloc/sign_in_bloc.dart';
 import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
+import 'package:gestion_mercancia_transporte/synchronization/state_management/synchronization_cubit/cubit/synchronization_cubit.dart';
 import 'package:gestion_mercancia_transporte/transport_request/state_managament/bloc/transport_request_bloc.dart';
 
 import '../../authentication/state_managament/sign_up_bloc/bloc/sign_up_bloc.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
       ),
       BlocProvider.value(
         value: sl<TransportRequestBloc>(),
+      ),
+      BlocProvider.value(
+        value: sl<SynchronizationCubit>(),
       ),
     ], child: const AppView());
   }

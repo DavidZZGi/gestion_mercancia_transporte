@@ -31,9 +31,6 @@ class TransportRequestPage extends StatelessWidget {
         builder: (context, state) {
           return state.when(
             initial: () {
-              context
-                  .read<TransportRequestBloc>()
-                  .add(const TransportRequestEvent.getAll());
               return const SizedBox.shrink();
             },
             loading: () => const Center(child: CircularProgressIndicator()),

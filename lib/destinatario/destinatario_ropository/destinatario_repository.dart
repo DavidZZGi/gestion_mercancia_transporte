@@ -14,4 +14,6 @@ class DestinatarioRepository {
       await destinatarioService.createDestinatario(destinatario);
   Future<void> createDestinatarioFromQr({required String qrCode}) async =>
       await destinatarioService.createDestinatarioFromQr(qrCode);
+  Future<void> uploadDestinatarioToServer() async =>
+      await destinatarioService.uploadDestinatarioToServer();
 }

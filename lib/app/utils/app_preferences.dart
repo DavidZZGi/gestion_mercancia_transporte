@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppPreferences {
   static const String _authTokenKey = "auth_token";
   static const String _userIdKey = "user_id";
+  static const String _userNameIdKey = "user_name";
 
   static late SharedPreferences _preferences;
 
@@ -15,6 +16,15 @@ class AppPreferences {
     final userId = _preferences.getInt(_userIdKey);
     print(userId);
     return userId;
+  }
+
+  String? getUserName() {
+    final result = _preferences.getString(_userNameIdKey);
+    return result ?? '';
+  }
+
+  Future<void> setUserName(String userName) async {
+    await _preferences.setString(_userNameIdKey, userName);
   }
 
   // Guarda el ID del usuario autenticado

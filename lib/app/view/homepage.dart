@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestion_mercancia_transporte/app/routes/router/app_router.gr.dart';
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/logout_cubit/cubit/logout_cubit.dart';
+import 'package:gestion_mercancia_transporte/destinatario/state_managament/bloc/destinatario_bloc.dart';
+import 'package:gestion_mercancia_transporte/transport_request/state_managament/bloc/transport_request_bloc.dart';
 
 import '../global/components/custom_dialos.dart';
 import '../utils/internet_connection_cheker.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  final _prefs = AppPreferences();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class HomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      'Gestiona tus operaciones ',
+                      '${_prefs.getUserName()}, gestiona tus operaciones ',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.9),
                         fontSize: 16,
@@ -136,15 +140,24 @@ class HomePage extends StatelessWidget {
                 title: 'Gestión de Destinatarios',
                 description: 'Administra los destinatarios registrados.',
                 icon: Icons.people,
-                onTap: () => context.router.push(const DestinatariosRoute()),
+                onTap: () {
+                  context
+                      .read<DestinatarioBloc>()
+                      .add(const DestinatarioEvent.getAll());
+                  context.router.push(const DestinatariosRoute());
+                },
               ),
               const SizedBox(height: 16),
               _NavigationCard(
-                title: 'Gestión de Solicitudes de Transporte',
-                description: 'Administra las solicitudes de transporte.',
-                icon: Icons.local_shipping,
-                onTap: () => context.router.push(const TransportRequestRoute()),
-              ),
+                  title: 'Gestión de Solicitudes de Transporte',
+                  description: 'Administra las solicitudes de transporte.',
+                  icon: Icons.local_shipping,
+                  onTap: () {
+                    context
+                        .read<TransportRequestBloc>()
+                        .add(const TransportRequestEvent.getAll());
+                    context.router.push(const TransportRequestRoute());
+                  }),
               const SizedBox(height: 16),
               _NavigationCard(
                 title: 'Cambiar Contraseña',

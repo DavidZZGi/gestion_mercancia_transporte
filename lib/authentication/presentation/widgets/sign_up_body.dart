@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gestion_mercancia_transporte/app/routes/router/app_router.gr.dart';
+import 'package:gestion_mercancia_transporte/app/utils/app_preferences.dart';
 import 'package:gestion_mercancia_transporte/authentication/authentication_repository/models/user.dart';
 import 'package:gestion_mercancia_transporte/authentication/state_managament/sign_up_bloc/bloc/sign_up_bloc.dart';
 
@@ -10,7 +11,7 @@ import '../../../app/utils/style/style.dart';
 import 'auth_widgets.dart';
 
 class SignUpBody extends StatelessWidget {
-  const SignUpBody(
+  SignUpBody(
       {super.key,
       required this.email,
       required this.password,
@@ -21,6 +22,7 @@ class SignUpBody extends StatelessWidget {
   final TextEditingController password;
   final TextEditingController repeatPassword;
   final TextEditingController username;
+  final _pref = AppPreferences();
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +103,7 @@ class SignUpBody extends StatelessWidget {
                             content: Text('Las contraseñas no coinciden')),
                       );
                     } else {
+                      _pref.setUserName(username.text);
                       context.read<SignUpBloc>().add(SignUpEvent.signUp(
                           user: User(
                               username: username.text,
