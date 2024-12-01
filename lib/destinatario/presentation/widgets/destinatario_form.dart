@@ -44,22 +44,41 @@ class _DestinatarioFormState extends State<DestinatarioForm> {
             TextFormField(
               initialValue: _name,
               decoration: const InputDecoration(labelText: 'Nombre'),
-              validator: (value) =>
-                  value == null || value.isEmpty ? 'Campo requerido' : null,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Campo requerido';
+                }
+                if (!RegExp(r"^[a-zA-Z\s]+$").hasMatch(value)) {
+                  return 'El nombre solo debe contener letras';
+                }
+                return null;
+              },
               onSaved: (value) => _name = value!,
             ),
             TextFormField(
               initialValue: _address,
               decoration: const InputDecoration(labelText: 'Dirección'),
-              validator: (value) =>
-                  value == null || value.isEmpty ? 'Campo requerido' : null,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Campo requerido';
+                }
+                return null;
+              },
               onSaved: (value) => _address = value!,
             ),
             TextFormField(
               initialValue: _phone,
+              keyboardType: TextInputType.phone,
               decoration: const InputDecoration(labelText: 'Teléfono'),
-              validator: (value) =>
-                  value == null || value.isEmpty ? 'Campo requerido' : null,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Campo requerido';
+                }
+                if (!RegExp(r"^\d+$").hasMatch(value)) {
+                  return 'El teléfono solo debe contener números';
+                }
+                return null;
+              },
               onSaved: (value) => _phone = value!,
             ),
           ],

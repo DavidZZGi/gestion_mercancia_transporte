@@ -19,8 +19,12 @@ class SynchronizationService implements SynchronizationInterface {
   }
 
   @override
-  Future<void> downloadDataFromServer() {
-    // TODO: implement downloadDataFromServer
-    throw UnimplementedError();
+  Future<void> downloadDataFromServer() async {
+    try {
+      await destinatarioService.downloadDestinatariosFromServer();
+      await transportRequestService.fetchTransportRequestsFromServer();
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

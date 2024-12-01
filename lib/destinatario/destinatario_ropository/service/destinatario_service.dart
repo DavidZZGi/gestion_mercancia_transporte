@@ -61,6 +61,35 @@ class DestinatarioService implements DestinatarioInterface {
     }
   }
 
+  Future<void> downloadDestinatariosFromServer() async {
+    try {
+      final response = await dio.get('/destinatarios');
+
+      if (response.statusCode == 200) {
+        // Convertir el JSON recibido en una lista de Destinatario
+        final data = response.data as List;
+        final destinatarioList =
+            data.map((json) => Destinatario.fromJson(json)).toList();
+        //guardar listado de destinatario del server en la bd local
+        for (var element in destinatarioList) {
+          try {
+            await createDestinatario(element);
+          } catch (e) {
+            throw (Exception(e));
+          }
+        }
+      } else {
+        throw Exception(
+          'Error al obtener destinatarios: Código ${response.statusCode} - ${response.statusMessage}',
+        );
+      }
+    } catch (dioError) {
+      // Manejo de errores de red
+      print('Error al obtener destinatarios: $dioError');
+      throw Exception('Fallo de red al intentar obtener datos del servidor');
+    }
+  }
+
   @override
   Future<void> deleteDestinatario(int destinatarioId) async {
     final db = await databaseHelper.database;

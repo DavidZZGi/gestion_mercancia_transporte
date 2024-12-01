@@ -129,6 +129,23 @@ showUpdateDialog(
   );
 }
 
+showSyncDialog(BuildContext context, VoidCallback onConfirm) {
+  showDialog(
+    context: context,
+    builder: (BuildContext dialogContext) {
+      return ConfirmationDialog(
+        title: 'Sincronizar con el server',
+        content: 'Estás seguro que quieres sincronizar con el server?',
+        confirmButtonText: 'Sincronizar',
+        icon: Icons.sync,
+        onConfirm: onConfirm,
+        onCancel: () =>
+            Navigator.maybePop(dialogContext), // Intentar cerrar el diálogo
+      );
+    },
+  );
+}
+
 Future<bool?> showDeleteDialog(
     BuildContext context, String entityName, VoidCallback onConfirm) {
   return showDialog<bool>(

@@ -45,6 +45,34 @@ class TransportRequestService implements TransportRequestInterface {
     }
   }
 
+  Future<void> fetchTransportRequestsFromServer() async {
+    try {
+      final response = await dio.get('/transport-requests');
+
+      if (response.statusCode == 200) {
+        // Convertir el JSON recibido en una lista de TransportRequest
+        final data = response.data as List;
+        final transportRequestList =
+            data.map((json) => TransportRequest.fromJson(json)).toList();
+        for (var element in transportRequestList) {
+          try {
+            await createTransportRequest(element);
+          } catch (e) {
+            throw (Exception(e));
+          }
+        }
+      } else {
+        throw Exception(
+          'Error al obtener solicitudes de transporte: Código ${response.statusCode} - ${response.statusMessage}',
+        );
+      }
+    } catch (dioError) {
+      // Manejo de errores de red
+      print('Error al obtener solicitudes de transporte: $dioError');
+      throw Exception('Fallo de red al intentar obtener datos del servidor');
+    }
+  }
+
   @override
   Future<void> createTransportRequest(TransportRequest request) async {
     final db = await databaseHelper.database;

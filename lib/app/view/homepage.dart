@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userName = _prefs.getUserName();
     return BlocListener<LogoutCubit, LogoutState>(
       listener: (context, state) {
         state.when(
@@ -37,10 +38,8 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Row(
               children: [
-                const Icon(
-                  Icons.dashboard,
-                  size: 35,
-                  color: Colors.white,
+                CircleAvatar(
+                  child: Text(userName![0].toUpperCase()),
                 ),
                 const SizedBox(
                   width: 15,
@@ -52,17 +51,17 @@ class HomePage extends StatelessWidget {
                       'Transporte de Mercancías',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '${_prefs.getUserName()}, gestiona tus operaciones ',
+                      'Bienvenido ${_prefs.getUserName()} ',
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.9),
-                        fontSize: 16,
-                      ),
+                          color: Colors.white.withOpacity(0.9),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -72,13 +71,16 @@ class HomePage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () async {
-                final hasInternet = await ConnectivityHelper.hasInternet();
-                if (!hasInternet) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('No hay conexión a Internet')),
-                  );
-                  return;
-                }
+                showSyncDialog(context, () async {
+                  final hasInternet = await ConnectivityHelper.hasInternet();
+                  if (!hasInternet) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('No hay conexión a Internet')),
+                    );
+                    return;
+                  }
+                });
 
                 /*  try {
             
