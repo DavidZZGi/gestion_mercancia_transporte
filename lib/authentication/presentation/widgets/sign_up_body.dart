@@ -32,8 +32,6 @@ class SignUpBody extends StatelessWidget {
             initial: () {},
             loading: () => const CircularProgressIndicator.adaptive(),
             success: (user) {
-              print(user);
-
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                     content: Text('Usuario creado satisfactoriamente')),

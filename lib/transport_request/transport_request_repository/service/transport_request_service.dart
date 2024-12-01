@@ -25,8 +25,10 @@ class TransportRequestService implements TransportRequestInterface {
               '/transport-requests',
               data: element.toJson(),
             );
-            if (response.statusCode == 200) {
-              print('Destinatario subido con éxito: ${element.toString()}');
+            if (response.statusCode == 201) {
+              final responseData = TransportRequest.fromJson(response.data);
+              print(
+                  'Destinatario subido con éxito: ${responseData.toString()}');
             } else {
               throw Exception(
                 'Error al subir destinatario ${element.toString()}: Código ${response.statusCode} - ${response.statusMessage}',
@@ -45,7 +47,7 @@ class TransportRequestService implements TransportRequestInterface {
     }
   }
 
-  Future<void> fetchTransportRequestsFromServer() async {
+  Future<void> downloadTransportRequestsFromServer() async {
     try {
       final response = await dio.get('/transport-requests');
 
@@ -67,8 +69,6 @@ class TransportRequestService implements TransportRequestInterface {
         );
       }
     } catch (dioError) {
-      // Manejo de errores de red
-      print('Error al obtener solicitudes de transporte: $dioError');
       throw Exception('Fallo de red al intentar obtener datos del servidor');
     }
   }

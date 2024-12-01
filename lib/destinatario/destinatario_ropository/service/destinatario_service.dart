@@ -17,30 +17,28 @@ class DestinatarioService implements DestinatarioInterface {
   @override
   Future<void> createDestinatario(Destinatario destinatario) async {
     final db = await databaseHelper.database;
-    final result = await db.insert(
+    await db.insert(
       destinatarioTable,
       destinatario.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print(result);
   }
 
   Future<void> uploadDestinatarioToServer() async {
     try {
       final destinatarios = await getAllDestinatarios();
       if (destinatarios.isEmpty) {
-        print('No hay destinatarios locales para sincronizar.');
         return;
       }
       for (final destinatario in destinatarios) {
         try {
           // Convertir cada destinatario a JSON y enviarlo al servidor
           final response = await dio.post(
-            '/destinatarios',
+            '/recipients',
             data: destinatario.toJson(),
           );
 
-          if (response.statusCode == 200) {
+          if (response.statusCode == 201) {
             print('Destinatario subido con éxito: ${destinatario.name}');
           } else {
             throw Exception(
@@ -55,8 +53,6 @@ class DestinatarioService implements DestinatarioInterface {
         }
       }
     } catch (e) {
-      // Manejo de errores generales
-      print('Error general en uploadDestinatarioToServer: $e');
       throw Exception('Sincronización fallida: $e');
     }
   }
@@ -84,8 +80,6 @@ class DestinatarioService implements DestinatarioInterface {
         );
       }
     } catch (dioError) {
-      // Manejo de errores de red
-      print('Error al obtener destinatarios: $dioError');
       throw Exception('Fallo de red al intentar obtener datos del servidor');
     }
   }
@@ -115,13 +109,12 @@ class DestinatarioService implements DestinatarioInterface {
   @override
   Future<void> updateDestinatario(Destinatario destinatario) async {
     final db = await databaseHelper.database;
-    final result = await db.update(
+    await db.update(
       destinatarioTable,
       destinatario.toJson(),
       where: 'id = ?',
       whereArgs: [destinatario.id],
     );
-    print(result);
   }
 
   @override

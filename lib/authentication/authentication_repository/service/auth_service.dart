@@ -31,6 +31,7 @@ class AuthService implements AuthInterface {
       _pref.setAuthToken(token);
       final user = User.fromJson(results.first);
       _pref.setUserId(user.id!);
+      _pref.setUserName(user.username);
       return user;
     }
     return null;
@@ -45,7 +46,7 @@ class AuthService implements AuthInterface {
   @override
   Future<void> logOut() async {
     await _pref.clearAuthToken();
-    print(_pref.getAuthToken());
+    await _pref.setUserName('');
   }
 
   @override
@@ -53,7 +54,6 @@ class AuthService implements AuthInterface {
     final db = await databaseHelper.database;
     final userwithPass =
         user.copyWith(passwordHash: _hashPassword(user.passwordHash));
-    print(userwithPass);
     await db.insert(
       userTable,
       userwithPass.toJson(),
