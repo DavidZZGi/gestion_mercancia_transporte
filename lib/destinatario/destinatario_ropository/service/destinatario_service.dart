@@ -96,6 +96,7 @@ class DestinatarioService implements DestinatarioInterface {
 
   @override
   Future<List<Destinatario>> getAllDestinatarios() async {
+    print(_pref.getUserId());
     final db = await databaseHelper.database;
     final List<Map<String, dynamic>> maps = await db.query(
       destinatarioTable,

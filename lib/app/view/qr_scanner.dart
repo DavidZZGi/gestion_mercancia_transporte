@@ -54,29 +54,20 @@ class _QrScannerPageState extends State<QrScannerPage> {
 
     qrController.scannedDataStream.listen((scanData) {
       try {
-        // Validar que el contenido del QR tenga el formato correcto
-        String qrContent = scanData.code;
-
-        // Aquí asumes que el QR tiene la información de un destinatario
-        // La validación puede ser más específica dependiendo del formato del QR
+        String qrContent = scanData.code!;
         if (qrContent.isEmpty) {
           throw const FormatException('Contenido de QR inválido');
         }
 
         // Llamar al callback con el contenido del QR
         widget.onScanComplete(qrContent);
-
-        // Si todo es correcto, cerrar el escáner
         controller?.dispose();
         Navigator.of(context).pop();
       } catch (e) {
-        // Manejar el error y mostrar un mensaje de error
         setState(() {
           errorMessage = 'Error al leer el QR: ${e.toString()}';
         });
 
-        // Puedes decidir que hacer, como reintentar el escaneo o volver a intentar
-        // También puedes restablecer el estado después de un tiempo
         Future.delayed(const Duration(seconds: 3), () {
           setState(() {
             errorMessage = null;

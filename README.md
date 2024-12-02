@@ -24,6 +24,13 @@
 - **json_serializable**: Para facilitar la conversión entre objetos Dart y JSON.
 - **get_it**: Para la inyección de dependencias
 
+### Backend (Nest.js)
+
+- **NestJS**: Framework backend que sigue principios de arquitectura limpia.
+- **TypeORM**: Para la gestión de la base de datos en el servidor.
+- **SQLite**: Base de datos local para almacenamiento y pruebas.
+- **Endpoints REST**: Exposición de APIs para sincronización de datos.
+
 ---
 
 ## Arquitectura
@@ -38,7 +45,7 @@ Durante el desarrollo de este proyecto, se utilizó Chatgpt como herramienta de 
 
 ### Generación de patrones de expresiones regulares
 
-- Se utilizó para crear expresiones regulares que validan y procesan datos provenientes de códigos QR.
+- Se utilizó para crear expresiones regulares para despues generar códigos QR.
 
 ### Interfaz de Usuario
 
@@ -56,6 +63,6 @@ Durante el desarrollo de este proyecto, se utilizó Chatgpt como herramienta de 
 
 - Generación de objetos de prueba en formato JSON para usar en herramientas como Postman.
 
-### Documentación de código
+### Ayuda a la hora de resolver errores
 
-- Redacción de comentarios explicativos para que el equipo pueda comprender el propósito de los métodos y decisiones arquitectónicas.
+-Cuando habia algo que no lograba resolver o encontrar el error utilizaba de esta herramienta para resolver errores de manera mas rapida
